@@ -48,12 +48,12 @@ public class ZoneOneBehaviourScript : MonoBehaviour {
 
         }
     }
-
+/**
     private void OnTriggerEnter(Collider other)
     {
         foreach (GameObject image in imageTargets)
         {
             image.SetActive(true);
         }
-    }
+    }**/
 }
