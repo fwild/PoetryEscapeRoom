@@ -11,14 +11,18 @@ public class WordManager2 : MonoBehaviour {
     public List<string> sentences;
     public List<string> words;
 
+    public int totalCharacters;
+
     public Text textlog;
 
-    void Start()
+    void Awake()
     {
         readPath = Application.dataPath + "/Zone-2/zone-2-words.txt";
 
         ReadFile(readPath);
         AddToLog(); // adds to the onscreen log debug use only
+
+        totalCharacters = 0;
     }
 
     private void ReadFile(string filePath)
@@ -36,6 +40,7 @@ public class WordManager2 : MonoBehaviour {
                 string[] sentWord = line.Split(null);
 
                 sentences.Add(line);
+                totalCharacters += line.Length;
                 words.AddRange(sentWord);
 
             }
