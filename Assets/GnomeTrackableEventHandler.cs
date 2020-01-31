@@ -15,8 +15,8 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
 
     protected override void Start()
     {
-        myGnome = this.GetComponent<Gnome>();
-
+        myGnome = this.GetComponentInChildren<Gnome>();
+        
         consoleLog.text += "started gnome trackable start routine\n";
 
         base.Start();
@@ -25,12 +25,13 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
     protected override void OnTrackingFound()
     {
         base.OnTrackingFound();
-        
+        consoleLog.text += "ontrackingfound running.\n";
+
         if (!myGnome.isPlaying)
         {
             myGnome.audio.Play(0);
             myGnome.isPlaying = true;
-            consoleLog.text += "gnome set to play audio";
+            consoleLog.text += "gnome set to play audio\n";
         }
     }
     
