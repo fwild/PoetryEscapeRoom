@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ZoneManager : MonoBehaviour {
 
-    GameObject Zone1Container;
-    GameObject Zone2Container;
-    GameObject Zone3Container;
+    public GameObject Zone1Container;
+    public GameObject Zone2Container;
+    public GameObject Zone3Container;
 
     // Use this for initialization
     void Start () {
@@ -29,15 +29,16 @@ public class ZoneManager : MonoBehaviour {
     
     public void ActivateZone(int whichZone)
     {
-        if (whichZone == 1)
-        {
+        if (whichZone == 1) {
+
+            Debug.Log("activating zone 1");
             setActiveWithChildren(Zone1Container, true);
             setActiveWithChildren(Zone2Container, false);
             setActiveWithChildren(Zone3Container, false);
 
-        }
-        else if (whichZone == 2)
+        } else if (whichZone == 2)
         {
+            Debug.Log("activating zone 2");
 
             setActiveWithChildren(Zone1Container, false);
             setActiveWithChildren(Zone2Container, true);
@@ -46,6 +47,8 @@ public class ZoneManager : MonoBehaviour {
         }
         else if (whichZone == 3)
         {
+
+            Debug.Log("activating zone 3");
 
             setActiveWithChildren(Zone1Container, false);
             setActiveWithChildren(Zone2Container, false);
