@@ -568,7 +568,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: 2017vuforiahololens
-  metroPackageVersion: 1.1.24.0
+  metroPackageVersion: 1.1.25.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
@@ -576,7 +576,7 @@ PlayerSettings:
   metroCertificateNotAfter: 80914321edf0d601
   metroApplicationDescription: 2017_vuforia_hololens
   wsaImages: {}
-  metroTileShortName: 2017_vuforia_hololens
+  metroTileShortName: Unbody
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0

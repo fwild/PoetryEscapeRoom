@@ -1,0 +1,1 @@
+C:\Unbody\PoetryEscapeRoom\App\2017_vuforia_hololens\2017_vuforia_hololens.csproj;x86
