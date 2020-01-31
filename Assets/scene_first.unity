@@ -3716,7 +3716,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 913341663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05677221cecc7b544aab9359fb1ac287, type: 3}
+  m_Script: {fileID: 11500000, guid: f79f52b3286dc7144960978973e646ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sentences: []
@@ -4195,7 +4195,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TotemTag_01Material
+  m_Name: TotemTag_05Material
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -4208,7 +4208,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e6159d81baef4e0696735635cbc72f40, type: 3}
+        m_Texture: {fileID: 2800000, guid: 620da167d31444c89e5d26394b28ef21, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
