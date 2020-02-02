@@ -52,7 +52,7 @@ public class Gnome : MonoBehaviour {
         {
             tickCount++;
         }
-        
+        consoleLog.text += "tc =" + tickCount + ", wc=" + currentWord + ", w=" + words.words.Count + "\n";
 
         if ((tickCount > 50) && (currentWord  < words.words.Count))
         {

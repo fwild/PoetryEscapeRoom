@@ -10,6 +10,8 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
 
     public Text consoleLog;
 
+    private bool audioStart = true;
+
     //private bool isPlaying = false;
     
 
@@ -25,14 +27,35 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
     protected override void OnTrackingFound()
     {
         base.OnTrackingFound();
-        consoleLog.text += "ontrackingfound running.\n";
+        consoleLog.text += "Tracking of target found\n";
 
         if (!myGnome.isPlaying)
         {
-            myGnome.audio.Play(0);
+            if (audioStart)
+            {
+                myGnome.audio.Play(0);
+                audioStart = false;
+            }
+            else
+                myGnome.audio.UnPause();
+            
             myGnome.isPlaying = true;
-            consoleLog.text += "gnome set to play audio\n";
+            consoleLog.text += "Gnome audio start playing\n";
         }
     }
-    
+
+    protected override void OnTrackingLost()
+    {
+        base.OnTrackingLost();
+        consoleLog.text += "Tracking of Target Lost\n";
+
+        if (myGnome.isPlaying)
+        {
+            myGnome.audio.Pause();
+            myGnome.isPlaying = false;
+            consoleLog.text += "Gnome Audio has stopped\n";
+        }
+
+    }
+
 }
