@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33472200200082176}
   - component: {fileID: 23255929192527030}
   m_Layer: 0
-  m_Name: Content
+  m_Name: Hull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,12 +39,12 @@ GameObject:
   - component: {fileID: 33291300586754088}
   - component: {fileID: 23638031482409724}
   m_Layer: 0
-  m_Name: Hull
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1869049348693738
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ Transform:
   m_GameObject: {fileID: 1705900043617272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.48000002, y: -1.49, z: -0.46}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4839956076524102}
   m_RootOrder: 0
@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869049348693738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4164027298685804}
@@ -97,7 +97,7 @@ Transform:
   m_GameObject: {fileID: 1024966598627354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.48000002, y: -1.49, z: -0.46}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4839956076524102}
   m_RootOrder: 1
@@ -116,7 +116,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2dd92b317430e75499b50ff4178f95d2, type: 3}
+  - {fileID: 2100000, guid: c315d989c4266c84db06cecd756f48ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +150,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 2dd92b317430e75499b50ff4178f95d2, type: 3}
+  - {fileID: 2100000, guid: 88b3a6c5c0aec5246a1d3da6b41436fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,3 +195,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35718df4e69a74849a8b241a88266937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips: []
+  ballID: 0
