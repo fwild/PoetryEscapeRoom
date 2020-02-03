@@ -406,7 +406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &47820202
 Transform:
   m_ObjectHideFlags: 0
@@ -1916,7 +1916,6 @@ GameObject:
   m_Component:
   - component: {fileID: 260546369}
   - component: {fileID: 260546368}
-  - component: {fileID: 260546367}
   - component: {fileID: 260546366}
   - component: {fileID: 260546365}
   - component: {fileID: 260546371}
@@ -1952,13 +1951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mWorldCenterMode: 2
   mWorldCenter: {fileID: 0}
---- !u!81 &260546367
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 260546364}
-  m_Enabled: 1
 --- !u!20 &260546368
 Camera:
   m_ObjectHideFlags: 0
@@ -3260,9 +3252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f05ae0a15792f45a7ff965b78bca16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Zone1Container: {fileID: 1677258300}
-  Zone2Container: {fileID: 47820201}
-  Zone3Container: {fileID: 1096615341}
 --- !u!4 &609066928
 Transform:
   m_ObjectHideFlags: 0
@@ -4916,6 +4905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f52b3286dc7144960978973e646ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readPath: 
+  textFile: {fileID: 4900000, guid: 4162d9f3a0f655d4eae341c072f43b88, type: 3}
   sentences: []
   words: []
   totalCharacters: 0
@@ -5058,6 +5049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f52b3286dc7144960978973e646ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readPath: 
+  textFile: {fileID: 0}
   sentences: []
   words: []
   totalCharacters: 0
@@ -6106,7 +6099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1096615342
 Transform:
   m_ObjectHideFlags: 0

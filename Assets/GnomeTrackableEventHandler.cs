@@ -44,6 +44,8 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
             
             myGnome.isPlaying = true;
 
+            myGnome.checkPlaying();
+
             //Debug.Log("started playing track\n");
             //consoleLog.text += "Gnome audio start playing\n";
         }

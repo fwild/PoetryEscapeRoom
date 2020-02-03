@@ -39,7 +39,8 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 30288888a5a7ae74b9fa8077f9dd77a9,
+    type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
@@ -568,7 +569,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Unbody
-  metroPackageVersion: 1.1.38.0
+  metroPackageVersion: 1.2.7.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
@@ -576,7 +577,9 @@ PlayerSettings:
   metroCertificateNotAfter: 80914321edf0d601
   metroApplicationDescription: Unbody
   wsaImages:
-    2031816: 
+    2031816: Assets/_icons/88x88.png
+    2097352: Assets/_icons/142x142.png
+    2228324: Assets/_icons/310x310.png
   metroTileShortName: Unbody
   metroCommandLineArgsFile: 
   metroTileShowName: 0

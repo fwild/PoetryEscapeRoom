@@ -76,9 +76,10 @@ public class Gnome : MonoBehaviour {
         if ((tickCount > textDelay) && (currentWord  < words.words.Count))
         {
 
-            consoleLog.text += "generating new word inside conditions\n";
+            //consoleLog.text += "generating new word inside conditions\n";
 
             tickCount = 0;
+            //Debug.Log("generating new word inside conditions");
 
             //Instantiate(prefab, this.transform.position + 0.5f * Vector3.down, this.transform.rotation);
             //GameObject wordObject = Instantiate(prefab, transform.position, Quaternion.identity, transform.parent);
@@ -106,4 +107,10 @@ public class Gnome : MonoBehaviour {
 
         }
 	}
+
+    public void checkPlaying()
+    {
+        Debug.Log("IsPlaying? " + isPlaying);
+        consoleLog.text += "isplaying? " + isPlaying + "\n";
+    }
 }
