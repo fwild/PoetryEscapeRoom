@@ -1916,7 +1916,6 @@ GameObject:
   m_Component:
   - component: {fileID: 260546369}
   - component: {fileID: 260546368}
-  - component: {fileID: 260546367}
   - component: {fileID: 260546366}
   - component: {fileID: 260546365}
   - component: {fileID: 260546371}
@@ -1952,13 +1951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mWorldCenterMode: 2
   mWorldCenter: {fileID: 0}
---- !u!81 &260546367
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 260546364}
-  m_Enabled: 1
 --- !u!20 &260546368
 Camera:
   m_ObjectHideFlags: 0
@@ -4916,6 +4908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f52b3286dc7144960978973e646ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readPath: 
+  textFile: {fileID: 4900000, guid: 4162d9f3a0f655d4eae341c072f43b88, type: 3}
   sentences: []
   words: []
   totalCharacters: 0
@@ -5058,6 +5052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f52b3286dc7144960978973e646ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readPath: 
+  textFile: {fileID: 0}
   sentences: []
   words: []
   totalCharacters: 0
