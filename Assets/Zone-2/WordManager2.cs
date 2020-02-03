@@ -14,16 +14,40 @@ public class WordManager2 : MonoBehaviour {
     public int totalCharacters;
 
     public Text textlog;
-
-    void Awake()
+    
+    void Start()
     {
+        //readPath = Application.dataPath + "/Zone-2/zone-2-words.txt";
+
+        //ReadFile(readPath);
+        ////AddToLog(); // adds to the onscreen log debug use only
+
+        //totalCharacters = 0;
+        sentences = new List<string>();
+        words = new List<string>();
         readPath = Application.dataPath + "/Zone-2/zone-2-words.txt";
 
         ReadFile(readPath);
-        AddToLog(); // adds to the onscreen log debug use only
+        //AddToLog(); // adds to the onscreen log debug use only
+
+        totalCharacters = 0;
+        Debug.Log("Awake script run - word manager created lists and read from file.");
+        //textlog.text += "Awake script run - word manager created lists and read from file.\n";
+    }
+
+    /**
+    public WordManager2()
+    {
+        sentences = new List<string>();
+        words = new List<string>();
+        readPath = Application.dataPath + "/Zone-2/zone-2-words.txt";
+
+        ReadFile(readPath);
+        //AddToLog(); // adds to the onscreen log debug use only
 
         totalCharacters = 0;
     }
+    **/
 
     private void ReadFile(string filePath)
     {

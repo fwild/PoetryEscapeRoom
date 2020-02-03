@@ -44,15 +44,9 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
-    - Unbody_Zone_Targets
     - Unbody_Totem_Markes
-    - Unbody_Edited
-    - Unbody
     dataSetsToActivate:
-    - Unbody_Zone_Targets
     - Unbody_Totem_Markes
-    - Unbody_Edited
-    - Unbody
   videoBackground:
     clippingMode: 0
     numDivisions: 2

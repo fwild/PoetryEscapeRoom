@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="Collider_4" size="0.800000 1.137206" />
+    <ImageTarget name="Collider_3" size="0.800000 1.137206" />
+    <ImageTarget name="Collider_2" size="0.800000 1.137206" />
+    <ImageTarget name="Collider_1" size="0.800000 1.137206" />
     <ImageTarget name="zone3colliderimage" size="0.800000 1.137206" />
     <ImageTarget name="zone2colliderimage" size="0.800000 1.137206" />
     <ImageTarget name="zone1colliderimage" size="0.800000 1.137206" />
