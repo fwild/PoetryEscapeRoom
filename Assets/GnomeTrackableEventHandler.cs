@@ -8,7 +8,7 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
 
     private Gnome myGnome;
 
-    public Text consoleLog;
+    public Text consoleLog; // need this for hololens
 
     private bool audioStart = true;
 
@@ -18,8 +18,9 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
     protected override void Start()
     {
         myGnome = this.GetComponentInChildren<Gnome>();
-        
-        consoleLog.text += "started gnome trackable start routine\n";
+
+        //consoleLog.text += "started gnome trackable start routine\n";
+        //Debug.Log("Started trackable gnome routine\n");
 
         base.Start();
     }
@@ -27,7 +28,9 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
     protected override void OnTrackingFound()
     {
         base.OnTrackingFound();
-        consoleLog.text += "Tracking of target found\n";
+
+        //consoleLog.text += "Tracking of target found\n";
+        //Debug.Log("found target image\n");
 
         if (!myGnome.isPlaying)
         {
@@ -40,20 +43,26 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
                 myGnome.audio.UnPause();
             
             myGnome.isPlaying = true;
-            consoleLog.text += "Gnome audio start playing\n";
+
+            //Debug.Log("started playing track\n");
+            //consoleLog.text += "Gnome audio start playing\n";
         }
     }
 
     protected override void OnTrackingLost()
     {
         base.OnTrackingLost();
-        consoleLog.text += "Tracking of Target Lost\n";
+
+        //consoleLog.text += "Tracking of Target Lost\n";
+        //Debug.Log("lost target image\n");
 
         if (myGnome.isPlaying)
         {
             myGnome.audio.Pause();
             myGnome.isPlaying = false;
-            consoleLog.text += "Gnome Audio has stopped\n";
+
+            //Debug.Log("stopped playing audio");
+            //consoleLog.text += "Gnome Audio has stopped\n";
         }
 
     }

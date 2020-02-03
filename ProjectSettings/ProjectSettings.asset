@@ -567,15 +567,16 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: 2017vuforiahololens
-  metroPackageVersion: 1.1.26.0
+  metroPackageName: Unbody
+  metroPackageVersion: 1.1.38.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 80914321edf0d601
-  metroApplicationDescription: 2017_vuforia_hololens
-  wsaImages: {}
+  metroApplicationDescription: Unbody
+  wsaImages:
+    2031816: 
   metroTileShortName: Unbody
   metroCommandLineArgsFile: 
   metroTileShowName: 0
