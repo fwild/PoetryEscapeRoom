@@ -17,12 +17,21 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
 
     protected override void Start()
     {
-        myGnome = this.GetComponentInChildren<Gnome>();
+        base.Start();
+        Debug.Log("base start script run");
+
+
+        myGnome = GetComponentInChildren<Gnome>();
+        Debug.Log("got the gnome child");
+        //myGnome.gameObject.GetComponent<AudioSource>(); // this doesnt work???
+        //gnomeSpeaker = myGnome.GetComponent<AudioSource>(); //this is the one that should work but it doesnt? null exception????
+        //AudioSource test = myGnome.audio;
+        Debug.Log("COMPLETE");
+
 
         //consoleLog.text += "started gnome trackable start routine\n";
         //Debug.Log("Started trackable gnome routine\n");
 
-        base.Start();
     }
 
     protected override void OnTrackingFound()
@@ -36,17 +45,17 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
         {
             if (audioStart)
             {
-                myGnome.audio.Play(0);
+                myGnome.GetComponent<AudioSource>().Play(0);
                 audioStart = false;
             }
             else
-                myGnome.audio.UnPause();
+                myGnome.GetComponent<AudioSource>().UnPause();
             
             myGnome.isPlaying = true;
 
             myGnome.checkPlaying();
 
-            //Debug.Log("started playing track\n");
+            Debug.Log("started playing track\n");
             //consoleLog.text += "Gnome audio start playing\n";
         }
     }
@@ -60,7 +69,7 @@ public class GnomeTrackableEventHandler : DefaultTrackableEventHandler {
 
         if (myGnome.isPlaying)
         {
-            myGnome.audio.Pause();
+            myGnome.GetComponent<AudioSource>().Pause();
             myGnome.isPlaying = false;
 
             //Debug.Log("stopped playing audio");

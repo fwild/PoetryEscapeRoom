@@ -29,13 +29,14 @@ public class AssetBehaviour : MonoBehaviour {
         //transform.Rotate(GetComponentInParent<GameObject>().transform.position, 20 * Time.deltaTime, 0);
     }
 
-    private void OnEnable()
-    {
-        WorldAnchorManager.Instance.AnchorStore.Delete(this.gameObject.name);
-        WorldAnchorManager.Instance.RemoveAnchor(this.gameObject);
-        WorldAnchorManager.Instance.AttachAnchor(this.gameObject, this.gameObject.name);
-        //this may throw an error when an anchor exists already
-    }
+    //Currently as of 01:44 04.02.2020 this is not working for ballbehaviour or assetbehaviour
+    //private void OnEnable()
+    //{
+    //    WorldAnchorManager.Instance.AnchorStore.Delete(this.gameObject.name);
+    //    WorldAnchorManager.Instance.RemoveAnchor(this.gameObject);
+    //    WorldAnchorManager.Instance.AttachAnchor(this.gameObject, this.gameObject.name);
+    //    //this may throw an error when an anchor exists already
+    //}
 
     private void OnTriggerEnter(Collider other)
     {

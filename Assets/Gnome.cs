@@ -8,109 +8,83 @@ public class Gnome : MonoBehaviour {
     private int currentWord;
     private int tickCount;
 
-    private int currentCharacterCount;
-    private int totalCharacterCount;
+    //private int currentCharacterCount;
+    //private int totalCharacterCount;
 
 
     public AudioSource audio;
     public AudioClip audioClip;
-    private float audioDuration;
+    //private float audioDuration;
 
     public bool isPlaying;
-
-    //public List<string> words;
+    
     private WordManager2 words;
 
     public GameObject prefab;
-    public Camera arCamera;
-    //private TextMesh textComponent;
+    //public Camera arCamera;
 
     public Text consoleLog;
 
 
-    private int textDelay = 20; // lower is better
-    
-    
-	void Start () {
-        //consoleLog.text += "gnome.cs start routine begin\n";
+    private int textDelay = 17; // lower is better 20 was really quite good..
 
-        //words = new WordManager2();
-        words = this.GetComponent<WordManager2>();
 
-        //consoleLog.text += "got component word manager instance\n";
-        
+    void Start()
+    {
+        //words = this.GetComponent<WordManager2>();        
+        words = GameObject.Find("Word Manager").GetComponent<WordManager2>();
         audio = this.GetComponent<AudioSource>();
 
         audio.clip = audioClip;
-        audioDuration = audio.clip.length;
+        //audioDuration = audio.clip.length;
 
-        currentCharacterCount = 0;
+        //currentCharacterCount = 0;
         tickCount = 0;
         currentWord = 0;
 
         isPlaying = false;
 
-        //consoleLog.text += "gnome.cs start routine end\n";
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        //consoleLog.text += "GnomeScript - Start routine complete, initialised variables."; //Hololens in game
+        Debug.Log("GnomeScript - Start routine complete, initialised variables."); //VS debug
+    }
 
-        //consoleLog.text += "isplaying? " + isPlaying;
-
+    // Update is called once per frame
+    void Update () {
         if (isPlaying)
-        {
             tickCount++;
-        }
-
-        //consoleLog.text += "test\n";
-        consoleLog.text += "tc =" + tickCount + ", wc=" + currentWord + ", w=" + words.words.Count + "\n";
-
-        //Debug.Log("tc =" + tickCount + ", wc=" + currentWord + ", w=" + words.words.Count + "\n");
-
-        //Debug.Log("wc: " + words.words.Count);
-        //Debug.Log("sc: " + words.sentences.Count);
-
-        //Debug.Log("words: " + words.words.Count);
 
         if ((tickCount > textDelay) && (currentWord  < words.words.Count))
         {
-
-            //consoleLog.text += "generating new word inside conditions\n";
-
             tickCount = 0;
-            //Debug.Log("generating new word inside conditions");
-
-            //Instantiate(prefab, this.transform.position + 0.5f * Vector3.down, this.transform.rotation);
-            //GameObject wordObject = Instantiate(prefab, transform.position, Quaternion.identity, transform.parent);
-            GameObject wordObject = Instantiate(prefab, this.transform.position + 0.5f * Vector3.down, this.transform.rotation);
-            Canvas cancasComponent = wordObject.GetComponentInParent<Canvas>();
-
-            cancasComponent.worldCamera = arCamera;
 
 
-            TextMesh textComponent = wordObject.GetComponentInChildren<TextMesh>();
+            //old way before 01:26 04/02/2020
+            //GameObject wordObject = Instantiate(prefab, this.transform.position + 0.5f * Vector3.down, this.transform.rotation);
+            //Canvas canvasComponent = wordObject.GetComponentInParent<Canvas>();
+
+            //canvasComponent.worldCamera = arCamera;
+
+            //TextMesh textComponent = wordObject.GetComponentInChildren<TextMesh>();
+
+            GameObject wordObject = Instantiate(prefab, this.transform.position + 0.1f * Vector3.down, this.transform.rotation); // was +0.5f.. a bit too low but okay?
+            TextMesh textComponent = wordObject.GetComponent<TextMesh>();
+            
 
             textComponent.text = words.words[currentWord];
-
-            //textComponent = prefab.GetComponent<TextMesh>();
-            //TextMesh textComponent = prefab.GetComponentInChildren<TextMesh>();
-
-
-            //textComponent.text = words.words[currentWord];
-
-            // send to billboard in hololens for debugging purposes
-            //consoleLog.text += "word = "+ textComponent.text;
-
+            
             currentWord++;
-
-
         }
 	}
 
     public void checkPlaying()
     {
-        Debug.Log("IsPlaying? " + isPlaying);
-        consoleLog.text += "isplaying? " + isPlaying + "\n";
+        Debug.Log("IsPlaying? " + isPlaying); //VS debug
+        //consoleLog.text += "isplaying? " + isPlaying + "\n"; //Hololens in game
+    }
+
+    public void checkWords()
+    {
+        Debug.Log("tc =" + tickCount + ", wc=" + currentWord + ", w=" + words.words.Count + "\n"); //VS debug
+        //consoleLog.text += "tc =" + tickCount + ", wc=" + currentWord + ", w=" + words.words.Count + "\n"; //Hololens in game
     }
 }

@@ -52,7 +52,7 @@ public class ZoneManager : MonoBehaviour {
 
         if (whichZone == 1)
         {
-            Debug.Log("activating zone 1");
+            Debug.Log("ZoneManager - Activating zone 1");
             Zone1Collider.SetActive(false);
             Zone2Collider.SetActive(true);
             Zone3Collider.SetActive(true);
@@ -67,7 +67,7 @@ public class ZoneManager : MonoBehaviour {
         }
         else if (whichZone == 2)
         {
-            Debug.Log("activating zone 2");
+            Debug.Log("ZoneManager - Activating zone 2");
             Zone1Collider.SetActive(true);
             Zone2Collider.SetActive(false);
             Zone3Collider.SetActive(true);
@@ -83,7 +83,7 @@ public class ZoneManager : MonoBehaviour {
         else if (whichZone == 3)
         {
 
-            Debug.Log("activating zone 3");
+            Debug.Log("ZoneManager - Activating zone 3");
             Zone1Collider.SetActive(true);
             Zone2Collider.SetActive(true);
             Zone3Collider.SetActive(false);
@@ -108,7 +108,7 @@ public class ZoneManager : MonoBehaviour {
         } else if (whichZone == 4)
         {
 
-            Debug.Log("activating zone 3");
+            Debug.Log("ZoneManager - Activating zone 4");
             Zone1Collider.SetActive(true);
             Zone2Collider.SetActive(true);
             Zone3Collider.SetActive(true);
