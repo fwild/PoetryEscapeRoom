@@ -6,13 +6,13 @@ public class GnomeTrackableEventHandler2 : DefaultTrackableEventHandler {
 
     public GameObject gnome;
 
-    private AudioSource audio;
+    private AudioSource myAudio;
 
     private bool audioStart = true;
 
     protected override void Start()
     {
-        audio = gnome.GetComponent<AudioSource>();
+        myAudio = gnome.GetComponent<AudioSource>();
 
         base.Start();
     }
@@ -23,11 +23,11 @@ public class GnomeTrackableEventHandler2 : DefaultTrackableEventHandler {
         {
             if (audioStart)
             {
-                audio.Play(0);
+                myAudio.Play(0);
                 audioStart = false;
             }
             else
-                audio.UnPause();
+                myAudio.UnPause();
 
             gnome.GetComponent<Gnome>().isPlaying = true;
         }
@@ -39,7 +39,7 @@ public class GnomeTrackableEventHandler2 : DefaultTrackableEventHandler {
     {
         if (gnome.GetComponent<Gnome>().isPlaying)
         {
-            audio.Pause();
+            myAudio.Pause();
             gnome.GetComponent<Gnome>().isPlaying = false;
         }
 

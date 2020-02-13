@@ -16,10 +16,11 @@ public class VideoTrackableEventHandler2 : DefaultTrackableEventHandler {
 
     protected override void OnTrackingFound()
     {
+
         //GetComponentInChildren<VideoPlayer>().Play();
         video.Play();
-
         base.OnTrackingFound();
+
     }
 
     protected override void OnTrackingLost()

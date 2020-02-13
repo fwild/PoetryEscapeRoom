@@ -569,7 +569,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Unbody
-  metroPackageVersion: 1.4.14.0
+  metroPackageVersion: 1.4.30.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
@@ -579,7 +579,9 @@ PlayerSettings:
   wsaImages:
     2031816: Assets/_icons/88x88.png
     2097352: Assets/_icons/142x142.png
+    2162888: Assets/_icons/300x300.png
     2228324: Assets/_icons/310x310.png
+    2228424: Assets/_icons/620x620.png
   metroTileShortName: Unbody
   metroCommandLineArgsFile: 
   metroTileShowName: 0

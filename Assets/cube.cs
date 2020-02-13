@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cube : MonoBehaviour {
 
-    private float upForce = -0.5f;
+    private float upForce = -0.05f;
     private float sideForce = 0.1f;
 
 	// Use this for initialization
