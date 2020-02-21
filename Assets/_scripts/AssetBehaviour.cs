@@ -6,44 +6,38 @@ using UnityEngine.UI;
 
 public class AssetBehaviour : MonoBehaviour {
     
-    private AudioSource audio;
+    public AudioSource myAudio;
     public AudioClip audioClip;
 
     public Text consoleLog;
     private LinePathManager lpmgr;
 
+    public GameObject pathObj;
+
     // Use this for initialization
     void Start()
     {
-        audio = this.GetComponent<AudioSource>();
-        lpmgr = GameObject.Find("Paths").GetComponent<LinePathManager>();
+        //myAudio = this.GetComponent<AudioSource>();
+        lpmgr = pathObj.GetComponent<LinePathManager>();
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //rotate balls in the air 
-        //this.transform.RotateAround(pos, new Vector3(0f, 0f, 0f), 90f * Time.deltaTime);
-        //transform.Rotate(Vector3.up * speed * Time.deltaTime);
-        //transform.Rotate(GetComponentInParent<GameObject>().transform.position, 20 * Time.deltaTime, 0);
-    }
-
+    //Currently as of 01:44 04.02.2020 this is not working for ballbehaviour or assetbehaviour
     private void OnEnable()
     {
-        WorldAnchorManager.Instance.AnchorStore.Delete(this.gameObject.name);
-        WorldAnchorManager.Instance.RemoveAnchor(this.gameObject);
-        WorldAnchorManager.Instance.AttachAnchor(this.gameObject, this.gameObject.name);
+        //WorldAnchorManager.Instance.AnchorStore.Delete(this.gameObject.name);
+        //WorldAnchorManager.Instance.RemoveAnchor(this.gameObject);
+        //WorldAnchorManager.Instance.AttachAnchor(this.gameObject, this.gameObject.name);
         //this may throw an error when an anchor exists already
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //do something
-        audio.clip = audioClip;
-        audio.Play(0);
+        myAudio.clip = audioClip;
+        myAudio.Play(0);
 
-        consoleLog.text += "Activating asset audio\n";
+        //consoleLog.text += "Activating asset audio\n";
 
         lpmgr.visitAsset(this.gameObject);
 

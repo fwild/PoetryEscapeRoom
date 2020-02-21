@@ -37,10 +37,12 @@ public class LinePathManager : MonoBehaviour {
         );
         lr.colorGradient = gradient;
 
-
-        for (int i=0; i < zone3Objects.Count; i++)
+        int i = 0;
+        foreach (GameObject go in zone3Objects)
         {
-            lr.SetPosition(i, zone3Objects[i].transform.position);
+            Debug.Log("LINE DRAWING: " + i);
+            lr.SetPosition(i, go.transform.position);
+            i++;
         }
 
     }

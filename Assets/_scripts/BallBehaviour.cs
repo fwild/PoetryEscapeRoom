@@ -9,31 +9,35 @@ public class BallBehaviour : MonoBehaviour {
     private Vector3 pos;
     private float speed = 25f;
 
-    private AudioSource audio;
+    public AudioSource myAudio;
     public AudioClip audioClip;
 
     public Text consoleLog;
 
-    private Renderer rend;
+    //private Renderer rend;
     private LinePathManager lpmgr;
+    public GameObject pathObj;
 
     Shader transparent, normal;
 
 	// Use this for initialization
 	void Start () {
-        audio = this.GetComponent<AudioSource>();
-        rend = this.GetComponent<Renderer>();
-        lpmgr = GameObject.Find("Paths").GetComponent<LinePathManager>();
+        this.transform.parent.transform.Find("Content").gameObject.SetActive(false);
 
-        transparent = Shader.Find("Custom/PortalBallShader");
+        //myAudio = this.GetComponent<AudioSource>();
+        //rend = this.GetComponent<Renderer>();
+        lpmgr = pathObj.GetComponent<LinePathManager>();
+
+        //transparent = Shader.Find("Custom/PortalBallShader");
         //transparent.Equals = 
 	}
 
+    //Currently as of 01:44 04.02.2020 this is not working for ballbehaviour or assetbehaviour
     private void OnEnable()
     {
-        WorldAnchorManager.Instance.AnchorStore.Delete(this.gameObject.name);
-        WorldAnchorManager.Instance.RemoveAnchor(this.gameObject);
-        WorldAnchorManager.Instance.AttachAnchor(this.gameObject, this.gameObject.name);
+        //WorldAnchorManager.Instance.AnchorStore.Delete(this.gameObject.name);
+        //WorldAnchorManager.Instance.RemoveAnchor(this.gameObject);
+        //WorldAnchorManager.Instance.AttachAnchor(this.gameObject, this.gameObject.name);
         //this may throw an error when an anchor exists already
     }
 
@@ -47,26 +51,31 @@ public class BallBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("triggered ballbeh");
         //do something
-        audio.clip = audioClip;
-        audio.Play(0);
-
-        consoleLog.text += "Activating ball content\n";
+        //consoleLog.text += "ball ontrigging begin: Activating ball content\n";
+        myAudio.clip = audioClip;
+        myAudio.Play(0);
         
-        normal = rend.material.shader;
-        rend.material.shader = transparent;
-        
-        this.transform.Find("Content").gameObject.SetActive(true);
+        //normal = rend.material.shader;
+        //rend.material.shader = transparent;
 
-        lpmgr.visitAsset(transform.parent.gameObject);
+        //this.transform.Find("Content").gameObject.SetActive(true);
+
+        lpmgr.visitAsset(this.gameObject);
+        //consoleLog.text += "Ball ontrigger ended\n";
+        //Debug.Log("ballbeh ended");
+
+        this.gameObject.SetActive(false); // decative itself
+
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        consoleLog.text += "Deactivating ball content\n";
+        //consoleLog.text += "Deactivating ball content\n";
 
-        rend.material.shader = normal;
-        this.transform.Find("Content").gameObject.SetActive(false);
+        //rend.material.shader = normal;
+        //this.transform.Find("Content").gameObject.SetActive(false);
     }
 }

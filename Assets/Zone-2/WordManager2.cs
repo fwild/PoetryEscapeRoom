@@ -5,99 +5,53 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class WordManager2 : MonoBehaviour {
+    
+    public TextAsset file;
 
-    public string readPath;
-    public TextAsset textFile;
-
-    public List<string> sentences;
+    //public List<string> sentences;
     public List<string> words;
 
     public int totalCharacters;
 
-    public Text textlog;
+    public Text consoleLog;
     
     void Start()
     {
-        //readPath = Application.dataPath + "/Zone-2/zone-2-words.txt";
-
-        //ReadFile(readPath);
-        ////AddToLog(); // adds to the onscreen log debug use only
-
-        //totalCharacters = 0;
-        sentences = new List<string>();
-        words = new List<string>();
-        //readPath = Application.dataPath + "/Zone-2/zone-2-words.txt";
-        //readPath = "zone-2-words.txt";
-
-        //ReadFile(readPath);
-        ReadFile2(textFile);
-        //AddToLog(); // adds to the onscreen log debug use only
+        //sentences = new List<string>();
+        //words = new List<string>();
 
         totalCharacters = 0;
-        Debug.Log("Awake script run - word manager created lists and read from file.");
-        //textlog.text += "Awake script run - word manager created lists and read from file.\n";
+
+        ReadFile();
+
+        //consoleLog.text += "WordManager - Start routine and ReadFile complete."; //Hololens in Unbody
+        Debug.Log("WordManager - Start routine and ReadFile complete."); //VS debug
     }
+   
 
-    /**
-    public WordManager2()
+    private void ReadFile()
     {
-        sentences = new List<string>();
-        words = new List<string>();
-        readPath = Application.dataPath + "/Zone-2/zone-2-words.txt";
+        string[] stringWords = file.text.Split(null);
 
-        ReadFile(readPath);
-        //AddToLog(); // adds to the onscreen log debug use only
-
-        totalCharacters = 0;
-    }
-    **/
-
-    private void ReadFile2(TextAsset file)
-    {
-        
-        string[] fileSentences = file.text.Split("\n"[0]);
-
-
-        foreach (string sentence in fileSentences)
+        foreach (string word in stringWords)
         {
-            string[] sentenceSplit = sentence.Split(null);
-
-            sentences.Add(sentence);
-            words.AddRange(sentenceSplit);
-            totalCharacters += sentence.Length;
+            words.Add(word);
+            totalCharacters += word.Length;
         }
-    }
 
-    //private void ReadFile(string filePath)
-    //{
-    //    //Problems with UWP resulted in this:??
-
-    //    using (StreamReader reader = new StreamReader(new FileStream(readPath, FileMode.Open)))
-    //    //StreamReader reader = new StreamReader(filePath);
-    //    { 
-
-
-    //        while (!reader.EndOfStream)
-    //        {
-    //            string line = reader.ReadLine();
-    //            string[] sentWord = line.Split(null);
-
-    //            sentences.Add(line);
-    //            totalCharacters += line.Length;
-    //            words.AddRange(sentWord);
-
-    //        }
+        //for (int i=0; i<stringWords.Length; i++)
+        //{
+        //    string s = stringWords[i];
             
-    //        //reader.Close();
-    //    }
-    //}
+        //    if (s.Length != 0)
+        //    {
+        //        words.Add(s);
+        //        totalCharacters += s.Length;
+        //    }
+        //}
 
-    private void AddToLog()
-    {
-        foreach (string line in sentences)
-        {
-            textlog.text += line + "\n";
-        }
+        //consoleLog.text += "WordManager - Finished reading in file to program."; //Hololens in Unbody
+        Debug.Log("WordManager - Finished reading in file to program."); //VS debug 
     }
-
+    
 }
