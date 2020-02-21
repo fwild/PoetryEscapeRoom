@@ -6,6 +6,7 @@ using UnityEngine.Video;
 public class VideoTrackableEventHandler2 : DefaultTrackableEventHandler {
 
     public VideoPlayer video;
+    
 
     protected override void Start()
     {
@@ -16,18 +17,16 @@ public class VideoTrackableEventHandler2 : DefaultTrackableEventHandler {
 
     protected override void OnTrackingFound()
     {
+        
+        VideoPlayerManager.Instance.playVideo(this.gameObject);
 
-        //GetComponentInChildren<VideoPlayer>().Play();
-        video.Play();
         base.OnTrackingFound();
 
     }
 
     protected override void OnTrackingLost()
     {
-        //GetComponentInChildren<VideoPlayer>().Pause();
-        video.Pause();
-
+        VideoPlayerManager.Instance.pauseVideo();
         base.OnTrackingLost();
     }
 }

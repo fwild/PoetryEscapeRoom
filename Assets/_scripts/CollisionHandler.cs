@@ -4,6 +4,7 @@ public class CollisionHandler : MonoBehaviour {
 
     public int zone;
     private ZoneManager zm;
+    public Canvas icam;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,10 @@ public class CollisionHandler : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (zone == 1)
+        {
+            icam.GetComponent<CanvasHandler>().showInstruction(""); // empty the message panel
+        }
         zm.ActivateZone(zone);
         Debug.Log("CollisionHandler - Collider in zone " + zone + " has been triggered, setting zone " + zone + " to active zone.");
     }
