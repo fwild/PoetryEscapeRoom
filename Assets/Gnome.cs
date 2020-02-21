@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Gnome : MonoBehaviour {
 
@@ -10,7 +11,8 @@ public class Gnome : MonoBehaviour {
 
     //private int currentCharacterCount;
     //private int totalCharacterCount;
-
+    public List<GameObject> wordObjects;
+    public Canvas icam;
 
     public AudioSource myAudio;
     public AudioClip audioClip;
@@ -105,7 +107,8 @@ public class Gnome : MonoBehaviour {
             //if (ol.enabled) ol.enabled = false;
         }
 
-        if ((tickCount > textDelay) && (currentWord  < words.words.Count))
+        //if ((tickCount > textDelay) && (currentWord  < words.words.Count))
+        if ((currentWord < words.words.Count) && (myAudio.time > words.wordOffsets[currentWord]))
         {
             tickCount = 0;
 
@@ -121,8 +124,34 @@ public class Gnome : MonoBehaviour {
             TextMesh textComponent = wordObject.GetComponent<TextMesh>();
             
             textComponent.text = words.words[currentWord];
+            wordObjects.Add(wordObject); // add gameobject word to list of words
             
             currentWord++;
+        } else
+        {
+            if (myAudio.time >= myAudio.clip.length)
+            {
+                Debug.Log("Poem has finished\n");
+
+                int n = 0;
+
+                for (int e = 0; e < wordObjects.Count; e++)
+                {
+                    int[] tPos = new int[9] { 10,20,30,40,50,60,70,80,90 };
+                    string[] tWords = new string[9] { "pre","un","on", "body", "conscious", "dream", "ly","er", "ing" };
+                    if (tPos.Contains(e)) {
+                        wordObjects[e].GetComponent<TextMesh>().text = tWords[n];
+                        // attach new component script for gazecursor selection
+                        // and highlighting
+                        // and line connections
+                        // at the end of each selection sequence, output to instructionPanel the full word and def
+                        // when internal counter shows three full compound words were created, stop and display outro on instrpanel
+                        n++;
+                    } else {
+                        wordObjects[e].SetActive(false);
+                    }
+                }
+            }
         }
 	}
 
