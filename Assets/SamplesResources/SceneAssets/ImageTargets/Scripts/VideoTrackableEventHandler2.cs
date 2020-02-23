@@ -4,22 +4,18 @@ using UnityEngine;
 using UnityEngine.Video;
 
 public class VideoTrackableEventHandler2 : DefaultTrackableEventHandler {
-
-    public VideoPlayer video;
     
-
+    public GameObject videoPlane;
+    
     protected override void Start()
     {
         base.Start();
-
-        ///video = GetComponentInChildren<VideoPlayer>();
     }
 
     protected override void OnTrackingFound()
     {
         
-        VideoPlayerManager.Instance.playVideo(this.gameObject);
-
+        VideoPlayerManager.Instance.playVideo(videoPlane, this.gameObject);
         base.OnTrackingFound();
 
     }

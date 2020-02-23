@@ -8,7 +8,7 @@ public class VideoPlayerManager : Singleton<VideoPlayerManager>
 {
     
 
-    public double timecode;
+    //public double timecode;
     public bool isPlaying = false;
 
     public GameObject videoObject;
@@ -16,7 +16,9 @@ public class VideoPlayerManager : Singleton<VideoPlayerManager>
 
     public VideoClip videoClip;
 
-    public void playVideo(GameObject target)
+    public GameObject videoPlane;
+
+    public void playVideo(GameObject prefab, GameObject target)
     {
         
         if (isPlaying)
@@ -31,22 +33,27 @@ public class VideoPlayerManager : Singleton<VideoPlayerManager>
         } else
         {
             Debug.Log("running else statement playVideo");
-            videoObject = new GameObject();
-            videoObject.transform.parent = target.transform;
+            //videoObject = new GameObject();
+            //videoObject.transform.parent = target.transform;
 
-            videoObject.AddComponent<MeshRenderer>();
-            videoObject.AddComponent<MeshFilter>();
+            videoPlane = Instantiate(prefab, target.transform.position, target.transform.rotation);
+            videoPlane.transform.parent = target.transform;
+
+
+            //videoObject.AddComponent<MeshRenderer>();
+            //videoObject.AddComponent<MeshFilter>();
 
             //videoObject.GetComponent<MeshFilter>().mesh = CreatePlaneMesh();
-            videoObject.GetComponent<MeshRenderer>().material.shader = Shader.Find("Default-Material");
+            //videoObject.GetComponent<MeshRenderer>().material.shader = Shader.Find("Default-Material");
 
-            
-            videoPlayer = videoObject.AddComponent<VideoPlayer>();
+
+            //videoPlayer = videoObject.AddComponent<VideoPlayer>();
+            videoPlayer = videoPlane.GetComponent<VideoPlayer>();
             videoPlayer.clip = videoClip;
             
-            videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.MaterialOverride;
-            videoPlayer.targetMaterialRenderer = videoObject.GetComponent<MeshRenderer>();
-            videoPlayer.targetMaterialProperty = "_MainTex";
+            //videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.MaterialOverride;
+            //videoPlayer.targetMaterialRenderer = videoObject.GetComponent<MeshRenderer>();
+            //videoPlayer.targetMaterialProperty = "_MainTex";
 
             videoPlayer.Play();
             isPlaying = true;
