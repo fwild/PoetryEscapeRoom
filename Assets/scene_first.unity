@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c2dbe181d2854d89f3f411d5a65e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  video: {fileID: 328435544676785974, guid: 4a5a72f2a4cec16458a287bfc579a6ee, type: 2}
+  videoPlane: {fileID: 1406103508030316, guid: 4a5a72f2a4cec16458a287bfc579a6ee, type: 2}
 --- !u!114 &41977186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3102,11 +3102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4038125fd6c0d744dbec278005b4cdaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timecode: 0
   isPlaying: 0
   videoObject: {fileID: 0}
   videoPlayer: {fileID: 0}
   videoClip: {fileID: 32900000, guid: af5ef76b32dcf7b4e95efc6f360470b2, type: 3}
+  videoPlane: {fileID: 0}
 --- !u!114 &609066927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3610,7 +3610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c2dbe181d2854d89f3f411d5a65e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  video: {fileID: 0}
+  videoPlane: {fileID: 1406103508030316, guid: 4a5a72f2a4cec16458a287bfc579a6ee, type: 2}
 --- !u!114 &642700457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5946,7 +5946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c2dbe181d2854d89f3f411d5a65e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  video: {fileID: 0}
+  videoPlane: {fileID: 1406103508030316, guid: 4a5a72f2a4cec16458a287bfc579a6ee, type: 2}
 --- !u!114 &964615010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6838,7 +6838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c2dbe181d2854d89f3f411d5a65e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  video: {fileID: 0}
+  videoPlane: {fileID: 1406103508030316, guid: 4a5a72f2a4cec16458a287bfc579a6ee, type: 2}
 --- !u!114 &1095142904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10513,7 +10513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c2dbe181d2854d89f3f411d5a65e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  video: {fileID: 0}
+  videoPlane: {fileID: 1406103508030316, guid: 4a5a72f2a4cec16458a287bfc579a6ee, type: 2}
 --- !u!114 &1864411922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11395,7 +11395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687c2dbe181d2854d89f3f411d5a65e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  video: {fileID: 0}
+  videoPlane: {fileID: 1406103508030316, guid: 4a5a72f2a4cec16458a287bfc579a6ee, type: 2}
 --- !u!114 &1970350767
 MonoBehaviour:
   m_ObjectHideFlags: 0
