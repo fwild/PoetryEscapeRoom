@@ -569,7 +569,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Unbody
-  metroPackageVersion: 1.4.33.0
+  metroPackageVersion: 1.4.34.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
