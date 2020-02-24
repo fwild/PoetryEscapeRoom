@@ -11,8 +11,13 @@ public class ZoneManager : MonoBehaviour {
     public GameObject Zone1Collider;
     public GameObject Zone2Collider;
 
-    public GameObject zone1Poem;
+    private AudioSource am;
 
+    public GameObject zone1Poem;
+    public float zone1PoemVolume = 1.0f;
+    private bool zone1PoemIsPlaying = false;
+
+    public Canvas theInstructionPanel;
 
     // Use this for initialization
     void Start () {
@@ -28,7 +33,17 @@ public class ZoneManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if (zone1PoemIsPlaying)
+        {
+            if (am.time >= am.clip.length)
+            {
+                Debug.Log("Zone 1 POEM finished, loading instruction for gnomebox");
+                zone1PoemIsPlaying = false;
+                theInstructionPanel.GetComponent<CanvasHandler>().showInstruction("“Find the frame that makes everything visible.\nPick up your text box and \nlook at it"); // empty the message panel
+            }
+        }
+
 	}
 
     private void setActiveWithChildren ( GameObject z, bool active)
@@ -52,8 +67,11 @@ public class ZoneManager : MonoBehaviour {
         {
             Debug.Log("ZoneManager - Activating zone 1");
 
-            AudioSource am = zone1Poem.GetComponent<AudioSource>();
+            am = zone1Poem.GetComponent<AudioSource>();
+
+            am.volume = zone1PoemVolume;
             am.Play(0);
+            zone1PoemIsPlaying = true;
 
         }
         else if (whichZone == 2)
