@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using HoloToolkit.Unity.SpatialMapping;
 
 public class Gnome : MonoBehaviour {
 
@@ -119,8 +120,39 @@ public class Gnome : MonoBehaviour {
             //canvasComponent.worldCamera = arCamera;
 
             //TextMesh textComponent = wordObject.GetComponentInChildren<TextMesh>();
+            var HeadPosition = Camera.main.transform.position;
+            var GazeDirection = Camera.main.transform.forward;
+            RaycastHit hitInfo;
+            GameObject wordObject;
+            if (Physics.Raycast(HeadPosition, GazeDirection, out hitInfo, 30.0f, Physics.DefaultRaycastLayers)) // + SpatialMappingManager.SpatialMappingLayerMask
+            {
+                GameObject focusedObject = hitInfo.collider.gameObject;
+                if (focusedObject.transform.parent != null)
+                {
+                    if (focusedObject.transform.parent.name == "SpatialMapping")
+                    {
+                        Debug.Log("Hit the spatial map, placing word");
+                        wordObject = Instantiate(prefab, hitInfo.point, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
+                    } else // some other parent, not spatial mesh
+                    {
+                        Debug.Log("Hit some other object with a parent, placing word");
+                        wordObject = Instantiate(prefab, hitInfo.point, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
 
-            GameObject wordObject = Instantiate(prefab, this.transform.position + 0.05f * Vector3.up, this.transform.rotation); // was +0.5f.. a bit too low but okay?
+                    }
+
+                }
+                else // no parent, but still hit something
+                {
+                    Debug.Log("Hit some object with no parent, placing word at position of the object + bit up");
+                    wordObject = Instantiate(prefab, this.transform.position + 0.05f * Vector3.up, this.transform.rotation); // was +0.5f.. a bit too low but okay?
+                }
+            }
+            else
+            {
+                Debug.Log("Hit nothing, so dropping word at gnomebox position");
+                wordObject = Instantiate(prefab, this.transform.position + 0.05f * Vector3.up, this.transform.rotation); // was +0.5f.. a bit too low but okay?
+            }
+            wordObject.transform.parent = GameObject.Find("Phase 2").transform;
             TextMesh textComponent = wordObject.GetComponent<TextMesh>();
             
             textComponent.text = words.words[currentWord];
