@@ -100,7 +100,7 @@ public class Gnome : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        DrawViewFinder();
+        //DrawViewFinder();
         if (isPlaying)
         {
             tickCount++;

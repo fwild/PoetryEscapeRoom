@@ -110,7 +110,7 @@ public class wordComposer : Singleton<wordComposer> {
     {
 
         theWordLine.material = new Material(Shader.Find("Sprites/Default"));
-        theWordLine.widthMultiplier = 0.2f;
+        theWordLine.widthMultiplier = 0.1f;
         theWordLine.positionCount = 2;
 
         // A simple 2 color gradient with a fixed alpha of 1.0f.

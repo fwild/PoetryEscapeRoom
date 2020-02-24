@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zone: 2
-  icam: {fileID: 0}
+  icam: {fileID: 1598911003}
 --- !u!135 &475664757
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1970,50 +1970,6 @@ Material:
     m_Floats: []
     m_Colors:
     - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
---- !u!1 &599029479
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 599029480}
-  - component: {fileID: 599029481}
-  m_Layer: 0
-  m_Name: Paths
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &599029480
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 599029479}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.132666, y: 0.36130506, z: -11.118326}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 668857273}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &599029481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 599029479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc3c4d165f7e554e9f7fab9736e9ee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zone3Objects: []
-  c1: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  c2: {r: 1, g: 0, b: 0, a: 1}
-  lengthOfLineRenderer: 10
 --- !u!1 &609066925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,17 +2017,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Zone1Container: {fileID: 1317166368}
   Zone2Container: {fileID: 47820201}
-  Zone3Container: {fileID: 0}
-  Zone4Container: {fileID: 668857272}
-  Zone1Collider: {fileID: 0}
-  Zone2Collider: {fileID: 0}
-  Zone3Collider: {fileID: 0}
-  Zone4Collider: {fileID: 0}
-  BallContent1: {fileID: 0}
-  BallContent2: {fileID: 0}
-  BallContent3: {fileID: 0}
-  BallContent4: {fileID: 0}
-  LinePMgrObj: {fileID: 599029479}
+  Zone1Collider: {fileID: 728737901}
+  Zone2Collider: {fileID: 475664755}
   zone1Poem: {fileID: 1619622961}
 --- !u!4 &609066928
 Transform:
@@ -2477,35 +2424,6 @@ MonoBehaviour:
   mImageTargetType: 0
   mWidth: 0.8
   mHeight: 1.1312
---- !u!1 &668857272
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 668857273}
-  m_Layer: 0
-  m_Name: Zone4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &668857273
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 668857272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.132666, y: -0.36130506, z: 11.118326}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 599029480}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &713439058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,7 +2662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zone: 1
-  icam: {fileID: 0}
+  icam: {fileID: 1598911003}
 --- !u!135 &728737903
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5526,7 +5444,7 @@ RectTransform:
   m_Children:
   - {fileID: 1826318208}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5679,7 +5597,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 87910f0bf0d41d841b31be60833cc61d, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 87910f0bf0d41d841b31be60833cc61d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6878,7 +6796,7 @@ RectTransform:
   m_Children:
   - {fileID: 143249159}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
