@@ -13,7 +13,7 @@ public class Gnome : MonoBehaviour {
     //private int currentCharacterCount;
     //private int totalCharacterCount;
     public List<GameObject> wordObjects;
-    public Canvas icam;
+    public InstructionController Instr;
 
     public AudioSource myAudio;
     public AudioClip audioClip;
@@ -48,23 +48,23 @@ public class Gnome : MonoBehaviour {
 
         if (!viewFinder.GetComponent<LineRenderer>())
         {
-            lr = viewFinder.AddComponent<LineRenderer>() as LineRenderer;
-            lr.positionCount = 5;
+            //lr = viewFinder.AddComponent<LineRenderer>() as LineRenderer;
+            //lr.positionCount = 5;
 
-            lr.material = new Material(Shader.Find("Sprites/Default"));
-            lr.widthMultiplier = 0.002f;
-            float alpha = 1.0f;
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(lrC1, 0.0f), new GradientColorKey(lrC2, 1.0f) },
-                new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
-            );
-            lr.colorGradient = gradient;
+            //lr.material = new Material(Shader.Find("Sprites/Default"));
+            //lr.widthMultiplier = 0.002f;
+            //float alpha = 1.0f;
+            //Gradient gradient = new Gradient();
+            //gradient.SetKeys(
+            //    new GradientColorKey[] { new GradientColorKey(lrC1, 0.0f), new GradientColorKey(lrC2, 1.0f) },
+            //    new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
+            //);
+            //lr.colorGradient = gradient;
 
             //DrawViewFinder();
         } else
         {
-            lr = viewFinder.GetComponent<LineRenderer>();
+            //lr = viewFinder.GetComponent<LineRenderer>();
         }
 
         //lr.SetPosition(1, Screen.safeArea)
@@ -87,14 +87,14 @@ public class Gnome : MonoBehaviour {
     void DrawViewFinder()
     {
 
-            float xfac = 0.8f * 0.125f;
-            float yfac = 0.5f * 0.125f;
-            float zfac = 0.5f;//3f;
-            lr.SetPosition(0, arCamera.transform.position + xfac * Vector3.left + yfac * Vector3.up + zfac * Vector3.forward);
-            lr.SetPosition(1, arCamera.transform.position + xfac * Vector3.right + yfac * Vector3.up + zfac * Vector3.forward);
-            lr.SetPosition(3, arCamera.transform.position + xfac * Vector3.left + yfac * Vector3.down + zfac * Vector3.forward);
-            lr.SetPosition(2, arCamera.transform.position + xfac * Vector3.right + yfac * Vector3.down + zfac * Vector3.forward);
-            lr.SetPosition(4, arCamera.transform.position + xfac * Vector3.left + yfac * Vector3.up + zfac * Vector3.forward);
+            //float xfac = 0.8f * 0.125f;
+            //float yfac = 0.5f * 0.125f;
+            //float zfac = 0.5f;//3f;
+            //lr.SetPosition(0, arCamera.transform.position + xfac * Vector3.left + yfac * Vector3.up + zfac * Vector3.forward);
+            //lr.SetPosition(1, arCamera.transform.position + xfac * Vector3.right + yfac * Vector3.up + zfac * Vector3.forward);
+            //lr.SetPosition(3, arCamera.transform.position + xfac * Vector3.left + yfac * Vector3.down + zfac * Vector3.forward);
+            //lr.SetPosition(2, arCamera.transform.position + xfac * Vector3.right + yfac * Vector3.down + zfac * Vector3.forward);
+            //lr.SetPosition(4, arCamera.transform.position + xfac * Vector3.left + yfac * Vector3.up + zfac * Vector3.forward);
 
     }
 
@@ -123,6 +123,7 @@ public class Gnome : MonoBehaviour {
             //canvasComponent.worldCamera = arCamera;
 
             //TextMesh textComponent = wordObject.GetComponentInChildren<TextMesh>();
+
             var HeadPosition = Camera.main.transform.position;
             var GazeDirection = Camera.main.transform.forward;
             RaycastHit hitInfo;

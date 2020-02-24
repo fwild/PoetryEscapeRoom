@@ -17,7 +17,7 @@ public class ZoneManager : MonoBehaviour {
     public float zone1PoemVolume = 1.0f;
     private bool zone1PoemIsPlaying = false;
 
-    public Canvas theInstructionPanel;
+    public InstructionController theInstructionPanel;
 
     // Use this for initialization
     void Start () {
@@ -40,7 +40,7 @@ public class ZoneManager : MonoBehaviour {
             {
                 Debug.Log("Zone 1 POEM finished, loading instruction for gnomebox");
                 zone1PoemIsPlaying = false;
-                theInstructionPanel.GetComponent<CanvasHandler>().showInstruction("“Find the frame that makes everything visible.\nPick up your text box and \nlook at it"); // empty the message panel
+                theInstructionPanel.showInstruction("Find the frame that makes everything visible.\nPick up your text box and \nlook at it."); // empty the message panel
             }
         }
 
@@ -77,16 +77,13 @@ public class ZoneManager : MonoBehaviour {
         else if (whichZone == 2)
         {
             Debug.Log("ZoneManager - Activating zone 2");
+
+            theInstructionPanel.showInstruction("");
+
             Zone1Collider.SetActive(false);
             Zone2Collider.SetActive(false);
-            //Zone3Collider.SetActive(true);
-            //Zone4Collider.SetActive(true);
 
             setActiveWithChildren(Zone1Container, false);
-            //setActiveWithChildren(Zone2Container, true);
-            //setActiveWithChildren(Zone3Container, false);
-            //setActiveWithChildren(Zone4Container, false);
-
 
         }
 

@@ -31,7 +31,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
         UpdateColor();
 
-        lr = this.gameObject.AddComponent<LineRenderer>();
+        lr = myWordObject.AddComponent<LineRenderer>();
 
     }
 
@@ -82,7 +82,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
     void HandleSyllableSelection( string syl )
     {
-        Debug.Log("some syllable was gaze selected " + syl + " and I am " + mySyllable);
+        Debug.Log("a syllable was gaze selected " + syl + " and I am " + mySyllable);
 
         if (syl == mySyllable)
         {
@@ -114,7 +114,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
     {
 
         lr.material = new Material(Shader.Find("Sprites/Default"));
-        lr.widthMultiplier = 0.2f;
+        lr.widthMultiplier = 0.05f;
         lr.positionCount = 2;
 
         lr.SetPosition(0, startPos);
