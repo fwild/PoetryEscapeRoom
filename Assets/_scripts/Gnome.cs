@@ -37,6 +37,9 @@ public class Gnome : MonoBehaviour {
 
     private int textDelay = 17; // lower is better 20 was really quite good..
 
+    // the index position of the wordObjects used for the wordComposer
+    int[] tPos = new int[9] { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
+
     void Start()
     {
         //words = this.GetComponent<WordManager2>();        
@@ -62,7 +65,6 @@ public class Gnome : MonoBehaviour {
         } else
         {
             lr = viewFinder.GetComponent<LineRenderer>();
-
         }
 
         //lr.SetPosition(1, Screen.safeArea)
@@ -81,6 +83,7 @@ public class Gnome : MonoBehaviour {
         //consoleLog.text += "GnomeScript - Start routine complete, initialised variables."; //Hololens in game
         Debug.Log("GnomeScript - Start routine complete, initialised variables."); //VS debug
     }
+
     void DrawViewFinder()
     {
 
@@ -94,13 +97,13 @@ public class Gnome : MonoBehaviour {
             lr.SetPosition(4, arCamera.transform.position + xfac * Vector3.left + yfac * Vector3.up + zfac * Vector3.forward);
 
     }
+
     // Update is called once per frame
     void Update () {
         DrawViewFinder();
         if (isPlaying)
         {
             tickCount++;
-
             //if (!ol.enabled) ol.enabled = true;
 
         } else
@@ -132,18 +135,17 @@ public class Gnome : MonoBehaviour {
                     if (focusedObject.transform.parent.name == "SpatialMapping")
                     {
                         Debug.Log("Hit the spatial map, placing word");
-                        wordObject = Instantiate(prefab, hitInfo.point, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
-                    } else // some other parent, not spatial mesh
+                        wordObject = Instantiate(prefab, hitInfo.point - 0.01f * GazeDirection, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
+                    } else // some other parent, not spatial mesh (= usually another word)
                     {
-                        Debug.Log("Hit some other object with a parent, placing word");
+                        Debug.Log("Hit some other object "+ hitInfo.transform.gameObject.name +" with a parent, placing word");
                         wordObject = Instantiate(prefab, hitInfo.point, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
-
                     }
 
                 }
                 else // no parent, but still hit something
                 {
-                    Debug.Log("Hit some object with no parent, placing word at position of the object + bit up");
+                    Debug.Log("Hit some object with no parent " + hitInfo.transform.gameObject.name + ", placing word at position of the object + bit up");
                     wordObject = Instantiate(prefab, this.transform.position + 0.05f * Vector3.up, this.transform.rotation); // was +0.5f.. a bit too low but okay?
                 }
             }
@@ -159,6 +161,7 @@ public class Gnome : MonoBehaviour {
             wordObjects.Add(wordObject); // add gameobject word to list of words
             
             currentWord++;
+
         } else
         {
             if (myAudio.time >= myAudio.clip.length)
@@ -169,16 +172,14 @@ public class Gnome : MonoBehaviour {
 
                 for (int e = 0; e < wordObjects.Count; e++)
                 {
-                    int[] tPos = new int[9] { 10,20,30,40,50,60,70,80,90 };
-                    string[] tWords = new string[9] { "pre","un","on", "body", "conscious", "dream", "ly","er", "ing" };
+                    string[] tWords = new string[9] { "pre","trans","un", "body", "conscious", "dream", "ectomy","ly", "ing" };
                     if (tPos.Contains(e)) {
+
                         wordObjects[e].GetComponent<TextMesh>().text = tWords[n];
-                        // attach new component script for gazecursor selection
-                        // and highlighting
-                        // and line connections
-                        // at the end of each selection sequence, output to instructionPanel the full word and def
-                        // when internal counter shows three full compound words were created, stop and display outro on instrpanel
+                        wordObjects[e].AddComponent<SyllableBehaviour>();
+                        wordObjects[e].GetComponent<SyllableBehaviour>().InitSyllable(tWords[n], wordObjects[e]);
                         n++;
+
                     } else {
                         wordObjects[e].SetActive(false);
                     }
