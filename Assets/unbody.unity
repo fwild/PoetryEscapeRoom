@@ -2020,6 +2020,8 @@ MonoBehaviour:
   Zone1Collider: {fileID: 728737901}
   Zone2Collider: {fileID: 475664755}
   zone1Poem: {fileID: 1619622961}
+  zone1PoemVolume: 1
+  theInstructionPanel: {fileID: 1598911003}
 --- !u!4 &609066928
 Transform:
   m_ObjectHideFlags: 0
