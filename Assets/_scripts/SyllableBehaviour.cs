@@ -32,6 +32,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
         UpdateColor();
 
         lr = myWordObject.AddComponent<LineRenderer>();
+        lr.positionCount = 0;
 
     }
 

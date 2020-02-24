@@ -33,7 +33,7 @@ public class wordComposer : Singleton<wordComposer> {
         defMatrix[4] = new string[3] { "transdreaming", "Transdreaming", "That moment when you find yourself acting in another's dream (or nightmare)" };
         defMatrix[5] = new string[3] { "transbodying", "Transbodying", "To enter your own changed body after a long time somewhere far away" };
         defMatrix[6] = new string[3] { "unconsciousing", "Unconsciousing", "To deliberately and intentionally surrender consciousness to other parts of your self" };
-        defMatrix[7] = new string[3] { "un dreaming", "Undreaming", "To peel away the utopian and out-of-reach nature of your desires in order to make them real" };
+        defMatrix[7] = new string[3] { "undreaming", "Undreaming", "To peel away the utopian and out-of-reach nature of your desires in order to make them real" };
         defMatrix[8] = new string[3] { "unbodying", "Unbodying", "The process by which capitalistic forces reduce you to the data you generate" };
         defMatrix[9] = new string[3] { "preconsciousectomy", "Preconsciousectomy", "Avoiding true knowledge (and responsibility); the numb, ghostlike sensation thereafter" };
         defMatrix[10] = new string[3] { "predreamectomy", "Predreamectomy", "" };
@@ -42,7 +42,7 @@ public class wordComposer : Singleton<wordComposer> {
         defMatrix[13] = new string[3] { "transdreamectomy", "Transdreamectomy", "" };
         defMatrix[14] = new string[3] { "transbodyectomy", "Transbodyectomy", "" };
         defMatrix[15] = new string[3] { "unconsciousectomy", "Unconsciousectomy", "" };
-        defMatrix[16] = new string[3] { "un dreamectomy", "Undreamectomy", "" };
+        defMatrix[16] = new string[3] { "undreamectomy", "Undreamectomy", "" };
         defMatrix[17] = new string[3] { "unbodyectomy", "Unbodyectomy", "" };
         defMatrix[18] = new string[3] { "preconsciously", "Preconsciously", "" };
         defMatrix[19] = new string[3] { "predreamly", "Predreamly", "Like the delicate half-world before we fall into a dream. See: Hypnogogia, hypnogogic" };
@@ -54,11 +54,12 @@ public class wordComposer : Singleton<wordComposer> {
         defMatrix[25] = new string[3] { "undreamly", "Undreamly", "" };
         defMatrix[26] = new string[3] { "unbodyly", "Unbodily", "" };
 
-        if (!theWordLine)
-        {
-            Debug.Log("ADDDING LINE RENDERERD FOR WORDCOMPOSER");
-            theWordLine = this.gameObject.AddComponent<LineRenderer>();
-        }
+        //if (!theWordLine)
+        //{
+        //    theWordLine = this.gameObject.AddComponent<LineRenderer>();
+        //}
+        theWordLine = this.gameObject.GetComponent<LineRenderer>();
+        theWordLine.useWorldSpace = true;
 
     }
 
@@ -86,7 +87,7 @@ public class wordComposer : Singleton<wordComposer> {
         {
             concatSyllables += theSyl;
         }
-        Debug.Log("Compund created: " + concatSyllables);
+        Debug.Log("Compound created: " + concatSyllables);
 
         int i = 0;
         while (i < 27)
