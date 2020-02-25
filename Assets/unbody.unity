@@ -482,14 +482,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62fd7a55ba7458499b69cae18f83806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PersistentKeywords: 0
+  PersistentKeywords: 1
   RecognizerStart: 0
   Keywords:
   - Keyword: start
     KeyCode: 0
   - Keyword: reset
     KeyCode: 0
-  recognitionConfidenceLevel: 1
+  recognitionConfidenceLevel: 2
 --- !u!114 &94357249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +516,13 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - Keyword: reset
+    Response:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 94357247}
           m_MethodName: Reset
           m_Mode: 1
@@ -531,7 +537,7 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   IsGlobalListener: 1
-  PersistentKeywords: 0
+  PersistentKeywords: 1
 --- !u!1 &96179985
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,19 +6,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.IO;
 
-public class wordComposer : Singleton<wordComposer> {
+public class WordComposer : Singleton<WordComposer> {
 
     public Color HighlightColor = Color.red;
     public Color NormalColor = Color.white;
 
     public TextMesh myText;
 
-    private List<GameObject> syllableObjects;
+    private List<GameObject> syllableObjects = new List<GameObject>();
 
     private LineRenderer theWordLine;
-    private List<Vector3> LinePositions;
+    private List<Vector3> LinePositions = new List<Vector3>();
 
-    private List<string> mySyllables;
+    private List<string> mySyllables = new List<string>();
     private string[][] defMatrix = new string[27][];
 
     public delegate void CallBackStack(string syl);
@@ -77,6 +77,7 @@ public class wordComposer : Singleton<wordComposer> {
 
     public void AddLinePosition( Vector3 position )
     {
+        Debug.Log("position add:"+ position);
         LinePositions.Add(position);
     }
 
@@ -138,7 +139,7 @@ public class wordComposer : Singleton<wordComposer> {
 
     }
 
-    protected wordComposer() {
+    protected WordComposer() {
         //Debug.Log("Initialising wordComposer");
     }
 

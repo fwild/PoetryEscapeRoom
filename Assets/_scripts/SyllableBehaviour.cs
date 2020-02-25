@@ -28,6 +28,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
         mySyllable = syl;
         myWordObject = myGO;
+        Debug.Log("pos at init: " + myWordObject.transform.position);
 
         UpdateColor();
 
@@ -44,11 +45,11 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
         TextMesh tm = myWordObject.GetComponent<TextMesh>();
         if (wMatrix[Phase].Contains(mySyllable))
         {
-            tm.color = wordComposer.Instance.HighlightColor;
+            tm.color = WordComposer.Instance.HighlightColor;
         }
         else
         {
-            tm.color = wordComposer.Instance.NormalColor;
+            tm.color = WordComposer.Instance.NormalColor;
         }
 
     }
@@ -56,11 +57,12 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 	// Use this for initialization
 	void Start () {
         Debug.Log("Registering callback");
-        wordComposer.Instance.onSyllableSelected += HandleSyllableSelection;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        WordComposer.Instance.onSyllableSelected += HandleSyllableSelection;
+        //WordComposer.Instance.AddLinePosition(myWordObject.transform.position);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
 		if (Phase == 1 || Phase == 2)
         {
@@ -72,9 +74,13 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
             gazeTickCounter++;
             if (gazeTickCounter > gazeDuration)
             {
+                Debug.Log("selected");
+                Debug.Log("Pos of myWordObj: " + myWordObject.transform.position.ToString());
                 // gazeTrigger
-                wordComposer.Instance.AddLinePosition(myWordObject.transform.position);
-                wordComposer.Instance.SyllableSelected(mySyllable);
+                WordComposer.Instance.AddLinePosition(myWordObject.transform.position);
+                Debug.Log("added line position, calling syllableselected");
+                WordComposer.Instance.SyllableSelected(mySyllable);
+                Debug.Log("syllableselected done");
             } else if ( (gazeTickCounter % 20) == 0 ) 
             {
                 Debug.Log(".");
@@ -92,8 +98,8 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
         {
             if (Phase == 2)
             {
-                wordComposer.Instance.DrawLine();
-                wordComposer.Instance.DisplayFullWord();
+                WordComposer.Instance.DrawLine();
+                WordComposer.Instance.DisplayFullWord();
             } else
             {
                 startPos = myWordObject.transform.position;
@@ -104,14 +110,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
         UpdateColor();
 
     }
-
-    // attach new component script for gazecursor selection
-    // and highlighting
-    // and line connections
-    // at the end of each selection sequence, output to instructionPanel the full word and def
-    // when internal counter shows three full compound words were created, stop and display outro on instrpanel
-
-
+    
     public void DrawLine(Vector3 currentPos)
     {
 
@@ -136,6 +135,6 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
     void Destroy()
     {
-        wordComposer.Instance.onSyllableSelected -= HandleSyllableSelection;
+        WordComposer.Instance.onSyllableSelected -= HandleSyllableSelection;
     }
 }

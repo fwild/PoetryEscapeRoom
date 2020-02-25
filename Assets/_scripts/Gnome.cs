@@ -169,6 +169,9 @@ public class Gnome : MonoBehaviour {
             
             currentWord++;
 
+            currentWord = currentWord + 9;
+            myAudio.time = myAudio.time + 2;
+
         } else
         {
             tickCount++;
