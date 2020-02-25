@@ -16,7 +16,7 @@ public class InstructionController : MonoBehaviour {
         theTextMesh = theText.GetComponent<TextMesh>();
         lr = theLine.GetComponent<LineRenderer>();
 
-        showInstruction("UNBODY\n Air-tap or say 'start' to begin...");
+        showInstruction("UNBODY\n Say 'start' to begin...");
         DrawViewFinder();
 
 	}

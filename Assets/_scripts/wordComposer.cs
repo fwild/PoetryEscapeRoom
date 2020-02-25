@@ -21,7 +21,7 @@ public class wordComposer : Singleton<wordComposer> {
     private string[][] defMatrix = new string[27][];
 
     public delegate void CallBackStack(string syl);
-    public CallBackStack onSyllableSelected; // register to this callback stack in order to receive notifications of gazelock on syllables
+    public event CallBackStack onSyllableSelected; // register to this callback stack in order to receive notifications of gazelock on syllables
 
     public void Start()
     {

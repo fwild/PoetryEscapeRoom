@@ -35,7 +35,8 @@ public class Gnome : MonoBehaviour {
     Color lrC1 = Color.white;
     Color lrC2 = new Color(1, 1, 1, 0);
 
-    private int textDelay = 17; // lower is better 20 was really quite good..
+    private bool wordComposerStarted = false;
+    private int textDelay = 50; // lower is better 20 was really quite good..
 
     // the index position of the wordObjects used for the wordComposer
     int[] tPos = new int[9] { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
@@ -104,7 +105,7 @@ public class Gnome : MonoBehaviour {
         //DrawViewFinder();
         if (isPlaying)
         {
-            tickCount++;
+            //tickCount++;
             //if (!ol.enabled) ol.enabled = true;
 
         } else
@@ -118,7 +119,7 @@ public class Gnome : MonoBehaviour {
             tickCount = 0;
 
             //old way before 01:26 04/02/2020
-            //GameObject wordObject = Instantiate(prefab, this.transform.position + 0.5f * Vector3.down, this.transform.rotation);
+            //GameObject wordObject = Instantiate(prefab, this.transform.position + 0.5f * Vector3.down, this.transform.rotation); // 0.05f * Vector3.up
             //Canvas canvasComponent = wordObject.GetComponentInParent<Canvas>();
 
             //canvasComponent.worldCamera = arCamera;
@@ -127,8 +128,10 @@ public class Gnome : MonoBehaviour {
 
             var HeadPosition = Camera.main.transform.position;
             var GazeDirection = Camera.main.transform.forward;
+            Vector3 offSet = 0.05f * Vector3.up; //0.5f * Vector3.down;
             RaycastHit hitInfo;
             GameObject wordObject;
+
             if (Physics.Raycast(HeadPosition, GazeDirection, out hitInfo, 30.0f, Physics.DefaultRaycastLayers)) // + SpatialMappingManager.SpatialMappingLayerMask
             {
                 GameObject focusedObject = hitInfo.collider.gameObject;
@@ -136,37 +139,40 @@ public class Gnome : MonoBehaviour {
                 {
                     if (focusedObject.transform.parent.name == "SpatialMapping")
                     {
-                        Debug.Log("Hit the spatial map, placing word");
+                        Debug.Log(currentWord + ". Hit the spatial map, placing word");
                         wordObject = Instantiate(prefab, hitInfo.point - 0.01f * GazeDirection, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
                     } else // some other parent, not spatial mesh (= usually another word)
                     {
-                        Debug.Log("Hit some other object "+ hitInfo.transform.gameObject.name +" with a parent, placing word");
-                        wordObject = Instantiate(prefab, hitInfo.point, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
+                        Debug.Log(currentWord + ". Hit some other object " + hitInfo.transform.gameObject.name +" with a parent, placing word at gnomebox instead");
+                        //wordObject = Instantiate(prefab, hitInfo.point, hitInfo.collider.gameObject.transform.parent.gameObject.transform.rotation); // Camera.main.transform.localRotation
+                        wordObject = Instantiate(prefab, this.transform.position + offSet, this.transform.rotation); // was +0.5f.. a bit too low but okay
                     }
 
                 }
                 else // no parent, but still hit something
                 {
-                    Debug.Log("Hit some object with no parent " + hitInfo.transform.gameObject.name + ", placing word at position of the object + bit up");
-                    wordObject = Instantiate(prefab, this.transform.position + 0.05f * Vector3.up, this.transform.rotation); // was +0.5f.. a bit too low but okay?
+                    Debug.Log(currentWord + ". Hit some object with no parent " + hitInfo.transform.gameObject.name + ", placing word at position of the object + bit up");
+                    wordObject = Instantiate(prefab, this.transform.position + offSet, this.transform.rotation); // was +0.5f.. a bit too low but okay?
                 }
             }
             else
             {
-                Debug.Log("Hit nothing, so dropping word at gnomebox position");
-                wordObject = Instantiate(prefab, this.transform.position + 0.05f * Vector3.up, this.transform.rotation); // was +0.5f.. a bit too low but okay?
+                Debug.Log(currentWord + ". Hit nothing, so dropping word at gnomebox position");
+                wordObject = Instantiate(prefab, this.transform.position + offSet, this.transform.rotation); // was +0.5f.. a bit too low but okay?
             }
+
             wordObject.transform.parent = GameObject.Find("Phase 2").transform;
-            TextMesh textComponent = wordObject.GetComponent<TextMesh>();
-            
+            TextMesh textComponent = wordObject.GetComponent<TextMesh>();     
             textComponent.text = words.words[currentWord];
+
             wordObjects.Add(wordObject); // add gameobject word to list of words
             
             currentWord++;
 
         } else
         {
-            if (myAudio.time >= myAudio.clip.length)
+            tickCount++;
+            if ( (!wordComposerStarted) && (currentWord >= words.words.Count) && (myAudio.time >= myAudio.clip.length || tickCount > textDelay ))
             {
                 Debug.Log("Poem has finished\n");
 
@@ -186,6 +192,7 @@ public class Gnome : MonoBehaviour {
                         wordObjects[e].SetActive(false);
                     }
                 }
+                wordComposerStarted = true;
             }
         }
 	}

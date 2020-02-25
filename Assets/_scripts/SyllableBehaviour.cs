@@ -31,7 +31,8 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
         UpdateColor();
 
-        lr = myWordObject.AddComponent<LineRenderer>();
+        if (!myWordObject.GetComponent<LineRenderer>()) myWordObject.AddComponent<LineRenderer>();
+        lr = myWordObject.GetComponent<LineRenderer>();
         lr.positionCount = 0;
 
     }
@@ -71,6 +72,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
             if (gazeTickCounter > gazeDuration)
             {
                 // gazeTrigger
+                wordComposer.Instance.AddLinePosition(myWordObject.transform.position);
                 wordComposer.Instance.SyllableSelected(mySyllable);
             } else if ( (gazeTickCounter % 20) == 0 ) 
             {
@@ -87,8 +89,6 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
         if (syl == mySyllable)
         {
-            wordComposer.Instance.AddLinePosition(myWordObject.transform.position);
-            wordComposer.Instance.AddSyllable(mySyllable);
             if (Phase == 2)
             {
                 wordComposer.Instance.DrawLine();
@@ -131,5 +131,10 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
     public void OnFocusExit()
     {
         gazedUpon = false;
+    }
+
+    void Destroy()
+    {
+        wordComposer.Instance.onSyllableSelected -= HandleSyllableSelection;
     }
 }
