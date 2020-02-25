@@ -81,6 +81,10 @@ public class Gnome : MonoBehaviour {
         tickCount = 0;
         currentWord = 0;
 
+        //currentWord = 250;
+        //myAudio.time = words.wordOffsets[currentWord - 1];
+
+
         isPlaying = false;
 
         //consoleLog.text += "GnomeScript - Start routine complete, initialised variables."; //Hololens in game
@@ -130,7 +134,7 @@ public class Gnome : MonoBehaviour {
 
             var HeadPosition = Camera.main.transform.position;
             var GazeDirection = Camera.main.transform.forward;
-            Vector3 offSet = 0.05f * Vector3.up; //0.5f * Vector3.down;
+            Vector3 offSet = 0.05f * Vector3.up + 1.0f * GazeDirection;  // was- 1.0f*Vector3.forward
             RaycastHit hitInfo;
             GameObject wordObject;
 
@@ -194,7 +198,8 @@ public class Gnome : MonoBehaviour {
                     string[] tWords = new string[9] { "pre", "trans", "un", "body", "conscious", "dream", "ectomy", "ly", "ing" };
 
                     r++;
-                    GameObject sylOb = Instantiate(prefab, Camera.main.transform.position + ((r % 3)+1) * 0.4f * Camera.main.transform.forward - 0.10f * Camera.main.transform.up + ((r / 3) * 0.5f * Camera.main.transform.right - 0.25f * Camera.main.transform.right), this.transform.rotation);
+                    GameObject sylOb = Instantiate(prefab, Camera.main.transform.position + ((r % 3)+1) * 0.4f * Camera.main.transform.forward - 0.40f * Camera.main.transform.up + ((r / 3) * 0.5f * Camera.main.transform.right - 0.25f * Camera.main.transform.right), this.transform.rotation);
+                    sylOb.transform.parent = GameObject.Find("Phase 3").transform;
                     syllableObjects.Add( sylOb );
                     sylOb.GetComponent<TextMesh>().text = tWords[n];
                     sylOb.AddComponent<SyllableBehaviour>();

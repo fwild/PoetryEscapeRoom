@@ -21,8 +21,9 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
     private bool waitForOutro = false;
     private int outroTickCounter = 0;
-    private int outroTickDuration = 200;
+    private int outroTickDuration = 600;
 
+    private Gradient gradient;
 
     public void InitSyllable( string syl, GameObject myGO )
     {
@@ -36,10 +37,6 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
         //Debug.Log("pos at init: " + myWordObject.transform.position);
 
         UpdateColor();
-
-        if (!myWordObject.GetComponent<LineRenderer>()) myWordObject.AddComponent<LineRenderer>();
-        lr = myWordObject.GetComponent<LineRenderer>();
-        lr.positionCount = 0;
 
     }
 
@@ -61,7 +58,28 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
 	// Use this for initialization
 	void Start () {
+
         WordComposer.Instance.onSyllableSelected += HandleSyllableSelection;
+
+        if (!myWordObject.GetComponent<LineRenderer>()) myWordObject.AddComponent<LineRenderer>();
+        lr = myWordObject.GetComponent<LineRenderer>();
+        lr.positionCount = 0;
+
+        float alpha = 1.0f;
+        gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(Color.red, 0.0f), new GradientColorKey(Color.yellow, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(alpha, 1.0f), new GradientAlphaKey(alpha, 1.0f) }
+        );
+
+        lr.useWorldSpace = false;
+
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.widthMultiplier = 0.005f;
+        lr.startWidth = 0.005f;
+        lr.endWidth = 0.005f;
+        lr.colorGradient = gradient;
+
     }
 
     // Update is called once per frame
@@ -83,14 +101,17 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
                 {
                     WordComposer.Instance.AddLinePosition(myWordObject.transform.position);
                     WordComposer.Instance.SyllableSelected(mySyllable);
+
                 } else
                 {
                     Debug.Log("wrong phase "+Phase+" for " + mySyllable +" selection");
                 }
                 gazedUpon = false;
 
-            } else if ( (gazeTickCounter % 20) == 0 ) 
+            } else // if ( (gazeTickCounter % 20) == 0 ) 
             {
+                myWordObject.GetComponent<TextMesh>().color = gradient.Evaluate( (float)gazeTickCounter / (float)gazeDuration );
+                DrawLine(gazeTickCounter);
                 Debug.Log(".");
             }
         }
@@ -138,26 +159,44 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
     }
 
-    public void DrawLine(Vector3 currentPos)
+    public static float GetWidth(TextMesh mesh)
+    {
+        float width = 0;
+        foreach (char symbol in mesh.text)
+        {
+            CharacterInfo info;
+            if (mesh.font.GetCharacterInfo(symbol, out info, mesh.fontSize, mesh.fontStyle))
+            {
+                width += info.advance;
+            }
+        }
+        return width * mesh.characterSize * 0.1f;
+    }
+
+    public void DrawLine( int tickCounter )
     {
 
-        lr.material = new Material(Shader.Find("Sprites/Default"));
-        lr.widthMultiplier = 0.005f;
+        //RectTransform rt = (RectTransform)myWordObject;
+        //Debug.Log("rect width: "+ GetWidth(myWordObject.GetComponent<TextMesh>()));
+        
         lr.positionCount = 2;
-
-        lr.SetPosition(0, startPos);
-        lr.SetPosition(1, currentPos);
+        lr.SetPosition(0, new Vector3(0,0,0) );
+        lr.SetPosition(1, new Vector3(((float)gazeTickCounter/(float)gazeDuration) * GetWidth(myWordObject.GetComponent<TextMesh>()), 0, 0) );
+        //lr.enabled = true;
 
     }
 
     public void OnFocusEnter()
     {
-        gazedUpon = true;
+        if (wMatrix[Phase].Contains(mySyllable)) gazedUpon = true;
     }
 
     public void OnFocusExit()
     {
         gazedUpon = false;
+        // reset the lr
+        gazeTickCounter = 0;
+        lr.positionCount = 0;
     }
 
     void Destroy()

@@ -40,7 +40,7 @@ public class ZoneManager : MonoBehaviour {
             {
                 Debug.Log("Zone 1 POEM finished, loading instruction for gnomebox");
                 zone1PoemIsPlaying = false;
-                theInstructionPanel.showInstruction("Find the frame that makes everything visible.\nPick up your text box and \nlook at it."); // empty the message panel
+                theInstructionPanel.showInstruction("Find the frame that makes \neverything visible. Pick up your \ntext box and look at it."); // empty the message panel
             }
         }
 
@@ -73,6 +73,8 @@ public class ZoneManager : MonoBehaviour {
             am.Play(0);
             zone1PoemIsPlaying = true;
 
+            //Zone1Collider.GetComponent<SphereCollider>().enabled = false;
+
         }
         else if (whichZone == 2)
         {
@@ -83,7 +85,7 @@ public class ZoneManager : MonoBehaviour {
             Zone1Collider.SetActive(false);
             Zone2Collider.SetActive(false);
 
-            setActiveWithChildren(Zone1Container, false);
+            //setActiveWithChildren(Zone1Container, false);
 
         }
 

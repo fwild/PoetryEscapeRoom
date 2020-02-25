@@ -21,10 +21,11 @@ public class VideoPlayerManager : Singleton<VideoPlayerManager>
         
         if (isPlaying)
         {
-            if (videoPlayer.transform.parent != target)
-            {
-                videoPlayer.transform.parent = target.transform;
-            }
+            //if (videoPlayer.transform.parent != target.transform)
+            //{
+            //    videoPlayer.transform.parent = target.transform;
+            //    videoPlane.transform.rotation *= Quaternion.Euler(0, 180f, 0);
+            //}
 
             videoPlayer.Play();
 
@@ -32,11 +33,13 @@ public class VideoPlayerManager : Singleton<VideoPlayerManager>
         {
             Debug.Log("running else statement playVideo");
 
-            videoPlane = Instantiate(prefab, target.transform.position, target.transform.rotation);
-            videoPlane.transform.parent = target.transform;
-            
+            //videoPlane = Instantiate(prefab, target.transform.position, target.transform.rotation);
+            //videoPlane.transform.parent = target.transform;
+
             videoPlayer = videoPlane.GetComponent<VideoPlayer>();
-            videoPlayer.clip = videoClip;
+            //videoPlayer.clip = videoClip;
+
+            //videoPlane.transform.rotation *= Quaternion.Euler(0, 180f, 0);
 
             videoPlayer.Play();
             isPlaying = true;
