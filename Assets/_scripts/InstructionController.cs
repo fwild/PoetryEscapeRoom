@@ -26,6 +26,11 @@ public class InstructionController : MonoBehaviour {
 		
 	}
 
+    public void Clear()
+    {
+        showInstruction("");
+    }
+
     public void Intro()
     {
         showInstruction("Stand where the body lies...");

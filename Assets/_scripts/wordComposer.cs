@@ -13,7 +13,7 @@ public class WordComposer : Singleton<WordComposer> {
 
     public TextMesh myText;
 
-    private List<GameObject> syllableObjects = new List<GameObject>();
+    //private List<GameObject> syllableObjects = new List<GameObject>();
 
     private LineRenderer theWordLine;
     private List<Vector3> LinePositions = new List<Vector3>();
@@ -53,7 +53,7 @@ public class WordComposer : Singleton<WordComposer> {
         defMatrix[23] = new string[3] { "transbodyly", "Transbodily", "" };
         defMatrix[24] = new string[3] { "unconsciously", "Unconsciously", "The manner in which we are expected to go about the world: with deliberate unawareness of power, class and history" };
         defMatrix[25] = new string[3] { "undreamly", "Undreamly", "" };
-        defMatrix[26] = new string[3] { "unbodyly", "Unbodily", "" };
+        defMatrix[26] = new string[3] { "unbodyly", "Unbodily", "fw test: To feel engaged by the exhibition." };
 
         //if (!theWordLine)
         //{
@@ -66,18 +66,12 @@ public class WordComposer : Singleton<WordComposer> {
 
     public void SyllableSelected( string syl )
     {
-        Debug.Log("Entering SyllableSelected");
         AddSyllable(syl);
-        Debug.Log("SyllableSelected: Added Syllable");
-        Debug.Log("Invoking Callbackstack");
         onSyllableSelected?.Invoke(syl);
-        Debug.Log("SyllableSelected done");
-
     }
 
     public void AddLinePosition( Vector3 position )
     {
-        Debug.Log("position add:"+ position);
         LinePositions.Add(position);
     }
 
@@ -94,6 +88,7 @@ public class WordComposer : Singleton<WordComposer> {
         {
             concatSyllables += theSyl;
         }
+        //concatSyllables = "unbodyly";
         Debug.Log("Compound created: " + concatSyllables);
 
         int i = 0;
@@ -118,8 +113,8 @@ public class WordComposer : Singleton<WordComposer> {
     {
 
         theWordLine.material = new Material(Shader.Find("Sprites/Default"));
-        theWordLine.widthMultiplier = 0.1f;
-        theWordLine.positionCount = 2;
+        theWordLine.widthMultiplier = 0.005f;
+        theWordLine.positionCount = LinePositions.Count;
 
         // A simple 2 color gradient with a fixed alpha of 1.0f.
         float alpha = 1.0f;
@@ -137,6 +132,11 @@ public class WordComposer : Singleton<WordComposer> {
             i++;
         }
 
+    }
+
+    public void displayOutro()
+    {
+        myText.text = "Please return your smart glasses on the way out.";
     }
 
     protected WordComposer() {

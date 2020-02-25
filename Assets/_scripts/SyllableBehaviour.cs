@@ -19,6 +19,11 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
     private int gazeTickCounter = 0;
     private int gazeDuration = 100;
 
+    private bool waitForOutro = false;
+    private int outroTickCounter = 0;
+    private int outroTickDuration = 200;
+
+
     public void InitSyllable( string syl, GameObject myGO )
     {
 
@@ -28,7 +33,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
         mySyllable = syl;
         myWordObject = myGO;
-        Debug.Log("pos at init: " + myWordObject.transform.position);
+        //Debug.Log("pos at init: " + myWordObject.transform.position);
 
         UpdateColor();
 
@@ -56,9 +61,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("Registering callback");
         WordComposer.Instance.onSyllableSelected += HandleSyllableSelection;
-        //WordComposer.Instance.AddLinePosition(myWordObject.transform.position);
     }
 
     // Update is called once per frame
@@ -66,7 +69,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
 		if (Phase == 1 || Phase == 2)
         {
-            DrawLine(Camera.main.transform.position + Vector3.forward);
+            //DrawLine(Camera.main.transform.position + 0.3f*Vector3.forward);
         }
 
         if (gazedUpon)
@@ -74,31 +77,49 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
             gazeTickCounter++;
             if (gazeTickCounter > gazeDuration)
             {
-                Debug.Log("selected");
-                Debug.Log("Pos of myWordObj: " + myWordObject.transform.position.ToString());
                 // gazeTrigger
-                WordComposer.Instance.AddLinePosition(myWordObject.transform.position);
-                Debug.Log("added line position, calling syllableselected");
-                WordComposer.Instance.SyllableSelected(mySyllable);
-                Debug.Log("syllableselected done");
+                Debug.Log("GAZE TRIGGERED " + mySyllable);
+                if (wMatrix[Phase].Contains(mySyllable))
+                {
+                    WordComposer.Instance.AddLinePosition(myWordObject.transform.position);
+                    WordComposer.Instance.SyllableSelected(mySyllable);
+                } else
+                {
+                    Debug.Log("wrong phase "+Phase+" for " + mySyllable +" selection");
+                }
+                gazedUpon = false;
+
             } else if ( (gazeTickCounter % 20) == 0 ) 
             {
                 Debug.Log(".");
             }
         }
 
-	}
+        if (waitForOutro)
+        {
+            outroTickCounter++;
+            if (outroTickCounter > outroTickDuration)
+            {
+                WordComposer.Instance.displayOutro();
+                waitForOutro = false;
+            }
+        }
+
+    }
 
 
     public void HandleSyllableSelection( string syl )
     {
-        Debug.Log("a syllable was gaze selected " + syl + " and I am " + mySyllable);
+        Debug.Log("Phase "+Phase+": a syllable was gaze selected " + syl + " and I am " + mySyllable);
 
         if (syl == mySyllable)
         {
+            //Debug.Log("That's me :)");
             if (Phase == 2)
             {
+                //Debug.Log("drawing line");
                 WordComposer.Instance.DrawLine();
+                //Debug.Log("showing definition");
                 WordComposer.Instance.DisplayFullWord();
             } else
             {
@@ -106,8 +127,14 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
             }
         }
 
-        Phase++;
-        UpdateColor();
+        if (Phase < 2)
+        {
+            Phase++;
+            UpdateColor();
+        } else
+        {
+            waitForOutro = true;
+        }
 
     }
     
@@ -115,7 +142,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
     {
 
         lr.material = new Material(Shader.Find("Sprites/Default"));
-        lr.widthMultiplier = 0.05f;
+        lr.widthMultiplier = 0.005f;
         lr.positionCount = 2;
 
         lr.SetPosition(0, startPos);

@@ -12,7 +12,9 @@ public class Gnome : MonoBehaviour {
 
     //private int currentCharacterCount;
     //private int totalCharacterCount;
-    public List<GameObject> wordObjects;
+    public List<GameObject> wordObjects = new List<GameObject>();
+    public List<GameObject> syllableObjects = new List<GameObject>();
+
     public InstructionController Instr;
 
     public AudioSource myAudio;
@@ -82,7 +84,7 @@ public class Gnome : MonoBehaviour {
         isPlaying = false;
 
         //consoleLog.text += "GnomeScript - Start routine complete, initialised variables."; //Hololens in game
-        Debug.Log("GnomeScript - Start routine complete, initialised variables."); //VS debug
+        //Debug.Log("GnomeScript - Start routine complete, initialised variables."); //VS debug
     }
 
     void DrawViewFinder()
@@ -169,8 +171,8 @@ public class Gnome : MonoBehaviour {
             
             currentWord++;
 
-            currentWord = currentWord + 9;
-            myAudio.time = myAudio.time + 2;
+            //currentWord = currentWord + 9;
+            //myAudio.time = myAudio.time + 2;
 
         } else
         {
@@ -179,21 +181,27 @@ public class Gnome : MonoBehaviour {
             {
                 Debug.Log("Poem has finished\n");
 
-                int n = 0;
-
                 for (int e = 0; e < wordObjects.Count; e++)
                 {
-                    string[] tWords = new string[9] { "pre","trans","un", "body", "conscious", "dream", "ectomy","ly", "ing" };
-                    if (tPos.Contains(e)) {
+                    wordObjects[e].SetActive(false);
+                }
 
-                        wordObjects[e].GetComponent<TextMesh>().text = tWords[n];
-                        wordObjects[e].AddComponent<SyllableBehaviour>();
-                        wordObjects[e].GetComponent<SyllableBehaviour>().InitSyllable(tWords[n], wordObjects[e]);
-                        n++;
+                int n = 0;
+                int r = 0;
 
-                    } else {
-                        wordObjects[e].SetActive(false);
-                    }
+                for (int e = 0; e < 9; e++)
+                {
+                    string[] tWords = new string[9] { "pre", "trans", "un", "body", "conscious", "dream", "ectomy", "ly", "ing" };
+
+                    r++;
+                    GameObject sylOb = Instantiate(prefab, Camera.main.transform.position + (r % 3) * 0.75f * Camera.main.transform.forward + 0.05f * Camera.main.transform.up + ((r / 3) * 0.5f * Camera.main.transform.right - 0.25f * Camera.main.transform.right), this.transform.rotation);
+                    syllableObjects.Add( sylOb );
+                    sylOb.GetComponent<TextMesh>().text = tWords[n];
+                    sylOb.AddComponent<SyllableBehaviour>();
+                    sylOb.GetComponent<SyllableBehaviour>().InitSyllable(tWords[n], sylOb);
+                    Debug.Log(n + "th syllable set up");
+                    n++;
+
                 }
                 wordComposerStarted = true;
             }

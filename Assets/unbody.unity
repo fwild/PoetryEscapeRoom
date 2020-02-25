@@ -489,6 +489,8 @@ MonoBehaviour:
     KeyCode: 0
   - Keyword: reset
     KeyCode: 0
+  - Keyword: clear
+    KeyCode: 0
   recognitionConfidenceLevel: 2
 --- !u!114 &94357249
 MonoBehaviour:
@@ -525,6 +527,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 94357247}
           m_MethodName: Reset
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - Keyword: clear
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 94357247}
+          m_MethodName: Clear
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1679,6 +1698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordObjects: []
+  syllableObjects: []
   Instr: {fileID: 94357247}
   myAudio: {fileID: 0}
   audioClip: {fileID: 8300000, guid: e04749b242fada04a882cbdd33314f43, type: 3}
@@ -2506,6 +2526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordObjects: []
+  syllableObjects: []
   Instr: {fileID: 94357247}
   myAudio: {fileID: 0}
   audioClip: {fileID: 8300000, guid: e04749b242fada04a882cbdd33314f43, type: 3}
@@ -3172,6 +3193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordObjects: []
+  syllableObjects: []
   Instr: {fileID: 94357247}
   myAudio: {fileID: 0}
   audioClip: {fileID: 8300000, guid: e04749b242fada04a882cbdd33314f43, type: 3}
@@ -5768,6 +5790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordObjects: []
+  syllableObjects: []
   Instr: {fileID: 94357247}
   myAudio: {fileID: 0}
   audioClip: {fileID: 8300000, guid: e04749b242fada04a882cbdd33314f43, type: 3}
@@ -7180,6 +7203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordObjects: []
+  syllableObjects: []
   Instr: {fileID: 94357247}
   myAudio: {fileID: 0}
   audioClip: {fileID: 8300000, guid: e04749b242fada04a882cbdd33314f43, type: 3}
