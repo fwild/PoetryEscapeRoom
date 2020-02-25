@@ -11,7 +11,7 @@ public class WordComposer : Singleton<WordComposer> {
     public Color HighlightColor = Color.red;
     public Color NormalColor = Color.white;
 
-    public TextMesh myText;
+    public InstructionController Instr;
 
     //private List<GameObject> syllableObjects = new List<GameObject>();
 
@@ -102,10 +102,10 @@ public class WordComposer : Singleton<WordComposer> {
         }
         if (i>26)
         {
-            myText.text = "Error: could not find compound " + concatSyllables;
+            Instr.showInstruction( "Error: could not find compound " + concatSyllables);
         } else
         {
-            myText.text = defMatrix[i][1] + ": " + defMatrix[i][2];
+            Instr.showInstruction( defMatrix[i][1] + ":\n " + defMatrix[i][2]);
         }
     }
 
@@ -136,7 +136,7 @@ public class WordComposer : Singleton<WordComposer> {
 
     public void displayOutro()
     {
-        myText.text = "Please return your smart glasses on the way out.";
+        Instr.showInstruction( "Please return your smart glasses on the way out." );
     }
 
     protected WordComposer() {

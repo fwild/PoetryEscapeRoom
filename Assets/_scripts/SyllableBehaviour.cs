@@ -48,7 +48,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
         // adapt color
         TextMesh tm = myWordObject.GetComponent<TextMesh>();
-        if (wMatrix[Phase].Contains(mySyllable))
+        if (Phase < 2 && wMatrix[Phase].Contains(mySyllable))
         {
             tm.color = WordComposer.Instance.HighlightColor;
         }
@@ -130,14 +130,14 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
         if (Phase < 2)
         {
             Phase++;
-            UpdateColor();
         } else
         {
             waitForOutro = true;
         }
+        UpdateColor();
 
     }
-    
+
     public void DrawLine(Vector3 currentPos)
     {
 
