@@ -194,7 +194,7 @@ public class Gnome : MonoBehaviour {
                     string[] tWords = new string[9] { "pre", "trans", "un", "body", "conscious", "dream", "ectomy", "ly", "ing" };
 
                     r++;
-                    GameObject sylOb = Instantiate(prefab, Camera.main.transform.position + (r % 3) * 0.75f * Camera.main.transform.forward + 0.05f * Camera.main.transform.up + ((r / 3) * 0.5f * Camera.main.transform.right - 0.25f * Camera.main.transform.right), this.transform.rotation);
+                    GameObject sylOb = Instantiate(prefab, Camera.main.transform.position + ((r % 3)+1) * 0.4f * Camera.main.transform.forward - 0.10f * Camera.main.transform.up + ((r / 3) * 0.5f * Camera.main.transform.right - 0.25f * Camera.main.transform.right), this.transform.rotation);
                     syllableObjects.Add( sylOb );
                     sylOb.GetComponent<TextMesh>().text = tWords[n];
                     sylOb.AddComponent<SyllableBehaviour>();

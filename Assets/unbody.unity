@@ -2187,7 +2187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HighlightColor: {r: 1, g: 0, b: 0, a: 1}
   NormalColor: {r: 1, g: 1, b: 1, a: 1}
-  myText: {fileID: 1826318209}
+  Instr: {fileID: 94357247}
 --- !u!120 &609066930
 LineRenderer:
   m_ObjectHideFlags: 0

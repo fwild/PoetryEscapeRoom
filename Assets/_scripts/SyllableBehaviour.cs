@@ -48,7 +48,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
         // adapt color
         TextMesh tm = myWordObject.GetComponent<TextMesh>();
-        if (Phase < 2 && wMatrix[Phase].Contains(mySyllable))
+        if (!waitForOutro && wMatrix[Phase].Contains(mySyllable))
         {
             tm.color = WordComposer.Instance.HighlightColor;
         }
@@ -112,16 +112,19 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
     {
         Debug.Log("Phase "+Phase+": a syllable was gaze selected " + syl + " and I am " + mySyllable);
 
-        if (syl == mySyllable)
+        if (!waitForOutro && syl == mySyllable)
         {
             //Debug.Log("That's me :)");
             if (Phase == 2)
             {
-                //Debug.Log("drawing line");
+                Debug.Log("drawing line");
                 WordComposer.Instance.DrawLine();
-                //Debug.Log("showing definition");
+                Debug.Log("showing definition");
                 WordComposer.Instance.DisplayFullWord();
-            } else
+                waitForOutro = true;
+                Debug.Log("Waiting for Outro");
+            }
+            else
             {
                 startPos = myWordObject.transform.position;
             }
@@ -130,10 +133,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
         if (Phase < 2)
         {
             Phase++;
-        } else
-        {
-            waitForOutro = true;
-        }
+        } 
         UpdateColor();
 
     }

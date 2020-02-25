@@ -136,7 +136,7 @@ public class WordComposer : Singleton<WordComposer> {
 
     public void displayOutro()
     {
-        Instr.showInstruction( "Please return your smart glasses on the way out." );
+        Instr.showInstruction( "Please return your smart\n glasses on the way out." );
     }
 
     protected WordComposer() {
