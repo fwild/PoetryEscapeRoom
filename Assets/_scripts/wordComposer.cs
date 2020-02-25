@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.IO;
 
 public class wordComposer : Singleton<wordComposer> {
@@ -65,8 +66,13 @@ public class wordComposer : Singleton<wordComposer> {
 
     public void SyllableSelected( string syl )
     {
-        AddSyllable( syl );
-        onSyllableSelected?.Invoke( syl );
+        Debug.Log("Entering SyllableSelected");
+        AddSyllable(syl);
+        Debug.Log("SyllableSelected: Added Syllable");
+        Debug.Log("Invoking Callbackstack");
+        onSyllableSelected?.Invoke(syl);
+        Debug.Log("SyllableSelected done");
+
     }
 
     public void AddLinePosition( Vector3 position )

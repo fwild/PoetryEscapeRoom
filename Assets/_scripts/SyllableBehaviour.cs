@@ -55,6 +55,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log("Registering callback");
         wordComposer.Instance.onSyllableSelected += HandleSyllableSelection;
 	}
 	
@@ -83,7 +84,7 @@ public class SyllableBehaviour : MonoBehaviour, IFocusable {
 	}
 
 
-    void HandleSyllableSelection( string syl )
+    public void HandleSyllableSelection( string syl )
     {
         Debug.Log("a syllable was gaze selected " + syl + " and I am " + mySyllable);
 
